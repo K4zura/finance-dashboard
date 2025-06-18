@@ -1,37 +1,44 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @import '@fontsource-variable/oxanium';
 
-@font-face {
-    font-family: 'Anisette';
-    src: url('/fonts/anisette-medium.woff2') format('woff2');
-    font-weight: 400;
-    font-display: swap;
+@theme {
+  --color-dark: #2e2f3c;
+  --color-light: #eeeffc;
+  --color-primary: #1391a6;
+  --color-secondary: #fe4069;
 }
 
 @font-face {
-    font-family: 'Anisette';
-    src: url('/fonts/anisette-light.woff2') format('woff2');
-    font-weight: 300;
-    font-display: swap;
+  font-family: 'Anisette';
+  src: url('/fonts/anisette-medium.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Anisette';
-    src: url('/fonts/anisette-bold.woff2') format('woff2');
-    font-weight: 600;
-    font-display: swap;
+  font-family: 'Anisette';
+  src: url('/fonts/anisette-light.woff2') format('woff2');
+  font-weight: 300;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Anisette';
-    src: url('/fonts/anisette-black.woff2') format('woff2');
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
+  font-family: 'Anisette';
+  src: url('/fonts/anisette-bold.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Anisette';
+  src: url('/fonts/anisette-black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
 }
 
 html {
-    font-family: 'Anisette', 'Oxanium Variable', sans-serif;
-    background-color: #2e2f3c;
-    color: #eeeffc;
+  font-family: 'Oxanium Variable', 'Anisette', sans-serif;
+  background-color: #2e2f3c;
+  color: #eeeffc;
 }
