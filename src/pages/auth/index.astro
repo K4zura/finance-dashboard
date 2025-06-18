@@ -1,0 +1,54 @@
+---
+import Field from '@/components/auth/Field.astro'
+import AuthLayout from '@/layouts/AuthLayout.astro'
+import InfoIcon from '@/assets/icons/info.svg'
+import GoogleIcon from '@/assets/icons/google.svg'
+import UserIcon from '@/assets/icons/user.svg'
+---
+
+<AuthLayout>
+  <section class="bg-primary absolute h-[682px] w-[512px] rounded-xl"></section>
+  <section
+    class="bg-light absolute right-0 flex h-[614px] w-[460px] flex-col justify-center rounded-xl px-10"
+  >
+    <h1 class="text-dark mb-12 flex items-center justify-center text-5xl font-extrabold">
+      <InfoIcon class="stroke-3 size-16" />
+      LOGIN
+    </h1>
+    <form action="" method="post" class="flex flex-col justify-center gap-4">
+      <Field id="email" type="email">E-mail</Field>
+      <Field id="password" type="password">Password</Field>
+      <a
+        href="/"
+        class="text-dark hover:drop-shadow-primary drop-shadow-transparent -translate-y-3 px-2 text-xs font-bold drop-shadow-md"
+        >Forgot the password?</a
+      >
+
+      <button
+        type="submit"
+        class="bg-secondary cursor-pointer self-end rounded-md px-8 py-1.5 text-lg font-bold"
+        >START</button
+      >
+    </form>
+    <div class="text-dark relative mt-10 flex items-center justify-center text-lg font-bold">
+      <div
+        class="bg-dark after:bg-dark absolute left-0 h-1 w-5/12 after:absolute after:-left-3 after:-top-1.5 after:h-4 after:w-4 after:rounded-full"
+      >
+      </div>
+      <p>O</p>
+      <div
+        class="bg-dark after:bg-dark absolute right-0 h-1 w-5/12 after:absolute after:-right-3 after:-top-1.5 after:h-4 after:w-4 after:rounded-full"
+      >
+      </div>
+    </div>
+
+    <div class="mt-3 flex justify-evenly">
+      <button class="bg-dark size-16 cursor-pointer rounded-full p-2.5">
+        <GoogleIcon class="size-full" />
+      </button>
+      <button class="bg-dark size-16 cursor-pointer rounded-full p-2.5">
+        <UserIcon class="text-light size-full" />
+      </button>
+    </div>
+  </section>
+</AuthLayout>

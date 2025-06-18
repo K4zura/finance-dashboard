@@ -1,9 +1,17 @@
 ---
-import Layout from '@/layouts/Layout.astro';
+import Layout from '@/layouts/Layout.astro'
+const logged = false
+
+// If the user is not logged in, redirect them to the login page
+if (!logged) {
+  return Astro.redirect('/auth')
+} else {
+  return Astro.redirect('/dashboard')
+}
 ---
 
 <Layout>
-<h1>HOLA ESTO ES UNA PRUEBA</h1>
-<h2>Probando Cosas</h2>
-<h2>Johann Bonilla</h2>
+  <h1>HOLA ESTO ES UNA PRUEBA</h1>
+  <h2>Probando Cosas</h2>
+  <h2>Johann Bonilla</h2>
 </Layout>
