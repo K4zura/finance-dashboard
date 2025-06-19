@@ -59,12 +59,12 @@ html {
 
 @keyframes scale-anim {
   0% {
-    left: 8;
+    height: 100%;
   }
-  90% {
-    left: 100%;
+  50% {
+    height: 0;
   }
   100% {
-    left: 8;
+    height: 100%;
   }
 }
