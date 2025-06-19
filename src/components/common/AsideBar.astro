@@ -1,0 +1,151 @@
+---
+import { Image } from 'astro:assets'
+import BarItem from '@/components/common/BarItem.astro'
+import imageProfile from '@/assets/images/jinwoo.avif'
+import DashboardIcon from '@/assets/icons/dashboard.svg'
+import IncomeIcon from '@/assets/icons/income.svg'
+import ExpenseIcon from '@/assets/icons/expense.svg'
+import SavingsIcon from '@/assets/icons/savings.svg'
+import LogoutIcon from '@/assets/icons/logout.svg'
+
+const anim = {
+  old: {
+    name: 'scale-anim',
+    duration: '0.4s',
+    easing: 'ease-in-out',
+    direction: 'reverse',
+  },
+  new: {
+    name: 'scale-anim',
+    duration: '0.4s',
+    easing: 'ease-in-out',
+  },
+}
+
+const scaleAnim = {
+  forwards: anim,
+  backwards: anim,
+}
+---
+
+<aside
+  transition:persist="true"
+  class="bg-primary relative flex flex-1 flex-col justify-between gap-4 overflow-x-hidden rounded-lg [grid-area:aside]"
+>
+  <section class="mx-4 my-4 flex grow basis-0 flex-col items-center gap-0.5">
+    <picture class="border-dark mx-1 size-28 overflow-hidden rounded-full border-4">
+      <!-- <Image
+        loading="eager"
+        inferSize={true}
+        class:list={`aspect-square size-full object-cover object-center`}
+        src={user.image}
+        alt="A starry night sky."
+      /> -->
+      <Image
+        loading="eager"
+        class:list={`aspect-square object-cover object-center`}
+        src={imageProfile}
+        alt="A starry night sky."
+      />
+    </picture>
+    <h2 class="text-light text-center text-xl font-extrabold">Jinwoo</h2>
+    <p class="drop-shadow-secondary mt-2 text-center text-2xl font-bold drop-shadow-md">
+      $ 100.000.000
+    </p>
+  </section>
+  <nav class="nav relative flex flex-col justify-center">
+    <div
+      id="menu-backdrop"
+      transition:animate={scaleAnim}
+      class="bg-dark absolute left-8 top-[var(--top)] h-[var(--height)] w-full rounded-l-lg transition-all duration-300 ease-in-out"
+    >
+      <div
+        class="bg-dark before:bg-primary left-4/5 absolute -top-4 h-4 w-full before:absolute before:top-0 before:h-full before:w-4 before:rounded-br-full before:[content:'']"
+      >
+      </div>
+      <div
+        class="bg-dark before:bg-primary left-4/5 absolute -bottom-4 h-4 w-full before:absolute before:top-0 before:h-full before:w-4 before:rounded-tr-full before:[content:'']"
+      >
+      </div>
+    </div>
+    <ul class="flex flex-col gap-2">
+      <BarItem href="/">
+        <DashboardIcon class="size-5" />
+        Dashboard
+      </BarItem>
+      <BarItem href="/income">
+        <IncomeIcon class="size-5" />
+        Income
+      </BarItem>
+      <BarItem href="/expense">
+        <ExpenseIcon class="size-5" />
+        Expense
+      </BarItem>
+      <BarItem href="/savings">
+        <SavingsIcon class="size-5" />
+        Savings
+      </BarItem>
+    </ul>
+  </nav>
+
+  <footer class="mx-4 mb-3 flex grow basis-0 items-end justify-center">
+    <button
+      id="logout"
+      class="flex cursor-pointer items-center gap-2 py-2 pr-2 font-bold transition-all duration-200 hover:pr-7"
+    >
+      <LogoutIcon class="stroke-3 text-dark size-5" />
+      Log Out
+    </button>
+  </footer>
+</aside>
+
+<script>
+  const listItem = document.querySelectorAll('.nav li a')
+  const menuBackDrop = document.querySelector('#menu-backdrop') as HTMLElement
+  const currentPath = window.location.pathname
+
+  listItem.forEach((item) => {
+    item.addEventListener('click', () => {
+      const { top, height } = item.getBoundingClientRect()
+      const sidebarTop = document.querySelector('.nav')?.getBoundingClientRect().top
+
+      // Mover el fondo
+      menuBackDrop.style.top = `${top - (sidebarTop ?? 20)}px`
+      menuBackDrop.style.height = `${height}px`
+      menuBackDrop.style.opacity = '1'
+    })
+  })
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const sidebarTop = document.querySelector('.nav')?.getBoundingClientRect().top
+    const currentPath = window.location.pathname
+    console.log(currentPath)
+    listItem.forEach((item) => {
+      const itemPath = (item as HTMLAnchorElement).href
+      console.log(itemPath)
+      if (itemPath.endsWith(currentPath)) {
+        const { top, height } = item.getBoundingClientRect()
+        menuBackDrop.style.top = `${top - (sidebarTop ?? 20)}px`
+        menuBackDrop.style.height = `${height}px`
+        menuBackDrop.style.opacity = '1'
+      }
+    })
+  })
+</script>
+
+<script>
+  import { $ } from '@/utils/dom-selector'
+  const { signOut } = await import('auth-astro/client')
+
+  const $logout = $('#logout')
+  if ($logout)
+    $logout.onclick = () => {
+      signOut()
+        .then(() => {
+          window.location.href = '/'
+        })
+        .catch((error) => {
+          console.error('Error during logout:', error)
+        })
+    }
+</script>

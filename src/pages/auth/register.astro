@@ -1,0 +1,17 @@
+---
+import Field from '@/components/auth/Field.astro'
+import AuthLayout from '@/layouts/AuthLayout.astro'
+import FormCard from '@/components/auth/FormCard.astro'
+import InfoCard from '@/components/auth/InfoCard.astro'
+---
+
+<AuthLayout>
+  <InfoCard side="right" />
+  <FormCard side="left">
+    REGISTER
+    <Field slot="fields" id="username" type="text">Username</Field>
+    <Field slot="fields" id="email" type="email">E-mail</Field>
+    <Field slot="fields" id="password" type="password">Password</Field>
+    <Field slot="fields" id="confirm-password" type="password">Confirm password</Field>
+  </FormCard>
+</AuthLayout>

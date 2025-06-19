@@ -2,6 +2,25 @@
 import { Image } from 'astro:assets'
 import '@/styles/global.css'
 import { ClientRouter } from 'astro:transitions'
+
+const anim = {
+  old: {
+    name: 'bump',
+    duration: '0.5s',
+    easing: 'ease-in',
+    direction: 'reverse',
+  },
+  new: {
+    name: 'bump',
+    duration: '0.5s',
+    easing: 'ease-in-out',
+  },
+}
+
+const mySlide = {
+  forwards: anim,
+  backwards: anim,
+}
 ---
 
 <!doctype html>
@@ -27,7 +46,10 @@ import { ClientRouter } from 'astro:transitions'
       alt="background"
       class="absolute left-0 top-0 size-full object-cover object-center blur-lg"
     />
-    <main class="relative z-10 flex w-[920px] select-none items-center">
+    <main
+      class="relative z-10 flex w-[920px] select-none items-center"
+      transition:animate={mySlide}
+    >
       <slot />
     </main>
   </body>

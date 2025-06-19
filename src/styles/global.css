@@ -42,3 +42,29 @@ html {
   background-color: #2e2f3c;
   color: #eeeffc;
 }
+
+@keyframes bump {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scale-anim {
+  0% {
+    left: 8;
+  }
+  90% {
+    left: 100%;
+  }
+  100% {
+    left: 8;
+  }
+}
