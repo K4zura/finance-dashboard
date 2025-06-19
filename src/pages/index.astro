@@ -1,13 +1,12 @@
 ---
 import Layout from '@/layouts/Layout.astro'
-// const logged = false
+const logged = false
 
-// If the user is not logged in, redirect them to the login page
-// if (!logged) {
-//   return Astro.redirect('/auth')
-// } else {
-//   return Astro.redirect('/dashboard')
-// }
+if (!logged) {
+  return Astro.redirect('/auth')
+} else {
+  return Astro.redirect('/dashboard')
+}
 ---
 
 <Layout>
