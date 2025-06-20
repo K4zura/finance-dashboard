@@ -8,10 +8,47 @@ interface Props {
 }
 
 const { side } = Astro.props
+
+let anim
+if (side === 'left') {
+  anim = {
+    old: {
+      name: 'hide-left',
+      duration: '0.3s',
+      easing: 'ease-in',
+      direction: 'reverse',
+    },
+    new: {
+      name: 'appear-left',
+      duration: '0.3s',
+      easing: 'ease-in-out',
+    },
+  }
+} else {
+  anim = {
+    old: {
+      name: 'hide-right',
+      duration: '0.3s',
+      easing: 'ease-in',
+      direction: 'reverse',
+    },
+    new: {
+      name: 'appear-right',
+      duration: '0.3s',
+      easing: 'ease-in-out',
+    },
+  }
+}
+
+const mySlide = {
+  forwards: anim,
+  backwards: anim,
+}
 ---
 
 <section
   class={`bg-light absolute flex ${side}-0 h-[614px] w-[460px] flex-col justify-center rounded-xl px-10`}
+  transition:animate={mySlide}
 >
   <h1 class="text-dark mb-12 flex items-center justify-center text-5xl font-extrabold">
     <InfoIcon class="stroke-3 size-16" />
