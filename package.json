@@ -9,10 +9,13 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/react": "^4.3.0",
     "@astrojs/vercel": "^8.2.0",
     "@auth/core": "^0.37.4",
     "@fontsource-variable/oxanium": "^5.2.6",
     "@tailwindcss/vite": "^4.1.10",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
     "@typescript-eslint/parser": "^8.34.1",
     "astro": "5.10.0",
     "auth-astro": "^4.2.0",
@@ -21,6 +24,8 @@
     "prettier": "^3.5.3",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.12",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "tailwindcss": "^4.1.10"
   }
 }

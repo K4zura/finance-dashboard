@@ -1,16 +1,35 @@
 ---
 import Layout from '@/layouts/Layout.astro'
-const logged = false
+// const logged = false
 
-if (!logged) {
-  return Astro.redirect('/auth')
-} else {
-  return Astro.redirect('/dashboard')
-}
+// if (!logged) {
+//   return Astro.redirect('/auth')
+// } else {
+//   return Astro.redirect('/dashboard')
+// }
 ---
 
 <Layout>
-  <h1>HOLA ESTO ES UNA PRUEBA</h1>
-  <h2>Probando Cosas</h2>
-  <h2>Johann Bonilla</h2>
+  <div class="flex items-center justify-between">
+    <div>
+      <h1 class="text-4xl font-bold">Personal Dashboard</h1>
+      <p class="font-semibold text-gray-400">Welcome back. Here's a summary of your progress.</p>
+    </div>
+    <button
+      class="bg-secondary cursor-pointer rounded px-5 py-2 font-semibold"
+      onclick="alert('already')">+ Add Fast</button
+    >
+  </div>
+  <div class="grid h-full grid-cols-6 grid-rows-7 gap-4">
+    <article class="bg-dark-light rounded"></article>
+    <article class="bg-dark-light rounded"></article>
+    <article class="bg-dark-light rounded"></article>
+    <article class="bg-dark-light rounded"></article>
+
+    <article class="bg-dark-light col-span-2 row-span-4 rounded"></article>
+    <article class="bg-dark-light col-span-2 row-span-2 rounded"></article>
+    <article class="bg-dark-light col-span-2 row-span-3 rounded"></article>
+    <article class="bg-dark-light col-span-2 row-span-4 rounded"></article>
+    <article class="bg-dark-light col-span-4 row-span-3 rounded"></article>
+  </div>
 </Layout>
