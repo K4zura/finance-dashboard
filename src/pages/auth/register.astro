@@ -7,7 +7,7 @@ import InfoCard from '@/components/auth/InfoCard.astro'
 
 <AuthLayout>
   <InfoCard side="right" />
-  <FormCard side="left">
+  <FormCard side="left" post="/api/auth/register">
     REGISTER
     <Field slot="fields" id="username" type="text">Username</Field>
     <Field slot="fields" id="email" type="email">E-mail</Field>

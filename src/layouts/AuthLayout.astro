@@ -2,6 +2,14 @@
 import { Image } from 'astro:assets'
 import '@/styles/global.css'
 import { ClientRouter } from 'astro:transitions'
+const { cookies, redirect } = Astro
+
+const accessToken = cookies.get('sb-access-token')
+const refreshToken = cookies.get('sb-refresh-token')
+
+if (accessToken && refreshToken) {
+  return redirect('/')
+}
 
 const anim = {
   old: {

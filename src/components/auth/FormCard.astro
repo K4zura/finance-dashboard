@@ -5,9 +5,10 @@ import UserIcon from '@/assets/icons/brands/user.svg'
 
 interface Props {
   side: string
+  post: string
 }
 
-const { side } = Astro.props
+const { side, post } = Astro.props
 
 let anim
 if (side === 'left') {
@@ -54,33 +55,38 @@ const mySlide = {
     <InfoIcon class="stroke-3 size-16" />
     <slot />
   </h1>
-  <form action="" method="post" class="flex flex-col justify-center gap-5">
+  <form action={post} method="post" class="flex flex-col justify-center gap-5">
     <slot name="fields" />
 
     <button
       type="submit"
-      class="bg-secondary cursor-pointer self-end rounded-md px-8 py-1.5 text-lg font-bold"
+      class="bg-secondary text-dark cursor-pointer self-end rounded-md px-8 py-1.5 text-lg font-bold"
       >START</button
     >
-  </form>
-  <div class="text-dark relative mt-10 flex items-center justify-center text-lg font-bold">
-    <div
-      class="bg-dark after:bg-dark absolute left-0 h-1 w-5/12 after:absolute after:-left-3 after:-top-1.5 after:h-4 after:w-4 after:rounded-full"
-    >
+    <div class="text-dark relative mt-10 flex items-center justify-center text-lg font-bold">
+      <div
+        class="bg-dark after:bg-dark absolute left-0 h-1 w-5/12 after:absolute after:-left-3 after:-top-1.5 after:h-4 after:w-4 after:rounded-full"
+      >
+      </div>
+      <p>O</p>
+      <div
+        class="bg-dark after:bg-dark absolute right-0 h-1 w-5/12 after:absolute after:-right-3 after:-top-1.5 after:h-4 after:w-4 after:rounded-full"
+      >
+      </div>
     </div>
-    <p>O</p>
-    <div
-      class="bg-dark after:bg-dark absolute right-0 h-1 w-5/12 after:absolute after:-right-3 after:-top-1.5 after:h-4 after:w-4 after:rounded-full"
-    >
-    </div>
-  </div>
 
-  <div class="mt-3 flex justify-evenly">
-    <button id="google" class="bg-dark size-16 cursor-pointer rounded-full p-2.5">
-      <GoogleIcon class="size-full" />
-    </button>
-    <a href="/" class="bg-dark size-16 cursor-pointer rounded-full p-2.5">
-      <UserIcon class="text-light pointer-events-none size-full" />
-    </a>
-  </div>
+    <div class="mt-3 flex justify-evenly">
+      <button
+        value="google"
+        name="provider"
+        type="submit"
+        class="bg-dark size-16 cursor-pointer rounded-full p-2.5"
+      >
+        <GoogleIcon class="size-full" />
+      </button>
+      <a href="/" class="bg-dark size-16 cursor-pointer rounded-full p-2.5">
+        <UserIcon class="text-light pointer-events-none size-full" />
+      </a>
+    </div>
+  </form>
 </section>

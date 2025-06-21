@@ -13,6 +13,7 @@
     "@astrojs/vercel": "^8.2.0",
     "@auth/core": "^0.37.4",
     "@fontsource-variable/oxanium": "^5.2.6",
+    "@supabase/supabase-js": "^2.50.0",
     "@tailwindcss/vite": "^4.1.10",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",

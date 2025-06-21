@@ -114,7 +114,7 @@ const scaleAnim = {
 
 <aside
   transition:persist="true"
-  class="bg-primary relative flex flex-1 flex-col justify-between gap-4 overflow-x-hidden rounded-lg [grid-area:aside]"
+  class="bg-primary relative flex flex-1 flex-col justify-between gap-4 overflow-y-auto overflow-x-hidden rounded-lg [grid-area:aside]"
 >
   <section class="mx-4 mt-4 flex flex-col items-center gap-0.5">
     <picture class="border-dark mx-1 size-28 overflow-hidden rounded-full border-4">
@@ -191,9 +191,12 @@ const scaleAnim = {
   </nav>
 
   <footer class="mx-4 mb-3 flex grow basis-0 items-end justify-center">
-    <a href="/auth" class="bg-secondary w-full rounded py-1.5 text-center text-lg font-bold">
-      Log In
-    </a>
+    <form action="/api/auth/signout" class="w-full">
+      <button
+        class="bg-secondary text-dark-light w-full cursor-pointer rounded py-1.5 text-center text-lg font-bold"
+        type="submit">Log Out</button
+      >
+    </form>
     <!-- <button
       id="logout"
       class="flex cursor-pointer items-center gap-2 py-2 pr-2 font-bold transition-all duration-200 hover:pr-7"

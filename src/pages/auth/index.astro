@@ -7,7 +7,7 @@ import InfoCard from '@/components/auth/InfoCard.astro'
 
 <AuthLayout>
   <InfoCard side="left" />
-  <FormCard side="right">
+  <FormCard side="right" post="/api/auth/signin">
     LOGIN
     <Field slot="fields" id="email" type="email">E-mail</Field>
     <Field slot="fields" id="password" type="password">Password</Field>
@@ -20,7 +20,7 @@ import InfoCard from '@/components/auth/InfoCard.astro'
   </FormCard>
 </AuthLayout>
 
-<script>
+<!-- <script>
   import { $ } from '@/utils/dom-selector'
   const { signIn, signOut } = await import('auth-astro/client')
 
@@ -29,4 +29,4 @@ import InfoCard from '@/components/auth/InfoCard.astro'
 
   if ($login) $login.onclick = () => signIn('google')
   // if ($logout) $logout.onclick = () => signOut()
-</script>
+</script> -->

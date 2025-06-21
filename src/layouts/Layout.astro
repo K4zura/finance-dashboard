@@ -2,6 +2,49 @@
 import '@/styles/global.css'
 import AsideBar from '@/components/common/AsideBar.astro'
 import { ClientRouter } from 'astro:transitions'
+import Header from '@/components/common/Header.astro'
+import { supabase } from '@/lib/supabase'
+
+const accessToken = Astro.cookies.get('sb-access-token')
+const refreshToken = Astro.cookies.get('sb-refresh-token')
+
+let session
+if (!accessToken || !refreshToken) {
+  console.log('no ta iniciado')
+} else {
+  try {
+    session = await supabase.auth.setSession({
+      refresh_token: refreshToken.value,
+      access_token: accessToken.value,
+    })
+    if (session.error) {
+      Astro.cookies.delete('sb-access-token', {
+        path: '/',
+      })
+      Astro.cookies.delete('sb-refresh-token', {
+        path: '/',
+      })
+      return Astro.redirect('/signin')
+    }
+  } catch (error) {
+    Astro.cookies.delete('sb-access-token', {
+      path: '/',
+    })
+    Astro.cookies.delete('sb-refresh-token', {
+      path: '/',
+    })
+    return Astro.redirect('/signin')
+  }
+}
+
+const email = session?.data.user?.email
+
+interface Props {
+  title: string
+  description: string
+}
+
+const { title, description } = Astro.props
 ---
 
 <!doctype html>
@@ -21,7 +64,9 @@ import { ClientRouter } from 'astro:transitions'
   </head>
   <body id="app" class="gap-4 p-4">
     <AsideBar />
-    <main class="flex flex-col gap-4 p-3 [grid-area:main]">
+    <main class="flex flex-col gap-4 overflow-y-auto p-3 [grid-area:main]">
+      <Header title={title} description={description} />
+      <h1 class="5xl">--{email}</h1>
       <slot />
     </main>
   </body>
