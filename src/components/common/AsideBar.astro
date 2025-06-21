@@ -16,8 +16,7 @@ import ClockIcon from '@/assets/icons/clock.svg'
 import BookIcon from '@/assets/icons/book.svg'
 import InitBackdrop from '@/components/common/InitBackdrop'
 import SettingsIcon from '@/assets/icons/settings.svg'
-
-const currentPath = Astro.url.pathname
+import type { UserRecord } from 'firebase-admin/auth'
 
 const menuItems = [
   {
@@ -92,24 +91,11 @@ const menuItems = [
   },
 ]
 
-const anim = {
-  old: {
-    name: 'scale-anim',
-    duration: '0.4s',
-    easing: 'ease-in-out',
-    direction: 'reverse',
-  },
-  new: {
-    name: 'scale-anim',
-    duration: '0.4s',
-    easing: 'ease-in-out',
-  },
+interface Props {
+  user?: UserRecord
 }
 
-const scaleAnim = {
-  forwards: anim,
-  backwards: anim,
-}
+const { user } = Astro.props
 ---
 
 <aside
@@ -125,14 +111,19 @@ const scaleAnim = {
         src={user.image}
         alt="A starry night sky."
       /> -->
-      <Image
+      <!-- <Image
         loading="eager"
         class:list={`aspect-square object-cover object-center`}
-        src={imageProfile}
+        src={user.photoURL}
         alt="A starry night sky."
+      /> -->
+      <img
+        src={user?.photoURL}
+        alt=`img profile of ${user?.displayName}`
+        class="aspect-square size-full object-cover object-center"
       />
     </picture>
-    <h2 class="text-light text-center text-xl font-extrabold">Jinwoo</h2>
+    <h2 class="text-light text-center text-xl font-extrabold">{user?.displayName}</h2>
     <!-- <p class="drop-shadow-secondary mt-2 text-center text-2xl font-bold drop-shadow-md">
       $ 100.000.000
     </p> -->
@@ -207,7 +198,7 @@ const scaleAnim = {
   </footer>
 </aside>
 
-<script>
+<!-- <script>
   import { $ } from '@/utils/dom-selector'
   const { signOut } = await import('auth-astro/client')
 
@@ -222,4 +213,4 @@ const scaleAnim = {
           console.error('Error during logout:', error)
         })
     }
-</script>
+</script> -->

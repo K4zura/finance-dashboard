@@ -3,41 +3,20 @@ import '@/styles/global.css'
 import AsideBar from '@/components/common/AsideBar.astro'
 import { ClientRouter } from 'astro:transitions'
 import Header from '@/components/common/Header.astro'
-import { supabase } from '@/lib/supabase'
 
-const accessToken = Astro.cookies.get('sb-access-token')
-const refreshToken = Astro.cookies.get('sb-refresh-token')
+import { app } from '../firebase/server'
+import { getAuth } from 'firebase-admin/auth'
 
-let session
-if (!accessToken || !refreshToken) {
-  console.log('no ta iniciado')
-} else {
-  try {
-    session = await supabase.auth.setSession({
-      refresh_token: refreshToken.value,
-      access_token: accessToken.value,
-    })
-    if (session.error) {
-      Astro.cookies.delete('sb-access-token', {
-        path: '/',
-      })
-      Astro.cookies.delete('sb-refresh-token', {
-        path: '/',
-      })
-      return Astro.redirect('/signin')
-    }
-  } catch (error) {
-    Astro.cookies.delete('sb-access-token', {
-      path: '/',
-    })
-    Astro.cookies.delete('sb-refresh-token', {
-      path: '/',
-    })
-    return Astro.redirect('/signin')
-  }
+const auth = getAuth(app)
+let user
+
+if (Astro.cookies.has('__session')) {
+  const sessionCookie = Astro.cookies.get('__session')!.value
+  const decodedCookie = await auth.verifySessionCookie(sessionCookie)
+  user = await auth.getUser(decodedCookie.uid)
 }
 
-const email = session?.data.user?.email
+console.log(user)
 
 interface Props {
   title: string
@@ -63,10 +42,9 @@ const { title, description } = Astro.props
     <ClientRouter />
   </head>
   <body id="app" class="gap-4 p-4">
-    <AsideBar />
+    <AsideBar user={user} />
     <main class="flex flex-col gap-4 overflow-y-auto p-3 [grid-area:main]">
       <Header title={title} description={description} />
-      <h1 class="5xl">--{email}</h1>
       <slot />
     </main>
   </body>

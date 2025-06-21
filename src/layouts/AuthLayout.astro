@@ -2,13 +2,16 @@
 import { Image } from 'astro:assets'
 import '@/styles/global.css'
 import { ClientRouter } from 'astro:transitions'
-const { cookies, redirect } = Astro
+import { app } from '../firebase/server'
+import { getAuth } from 'firebase-admin/auth'
 
-const accessToken = cookies.get('sb-access-token')
-const refreshToken = cookies.get('sb-refresh-token')
-
-if (accessToken && refreshToken) {
-  return redirect('/')
+const auth = getAuth(app)
+if (Astro.cookies.has('__session')) {
+  const sessionCookie = Astro.cookies.get('__session')!.value
+  const decodedCookie = await auth.verifySessionCookie(sessionCookie)
+  if (decodedCookie) {
+    return Astro.redirect('/')
+  }
 }
 
 const anim = {
