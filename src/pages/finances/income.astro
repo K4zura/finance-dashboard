@@ -25,3 +25,10 @@ import Layout from '@/layouts/Layout.astro'
     <article class="bg-dark-light col-span-3 h-96 rounded"></article>
   </div>
 </Layout>
+
+<script onload="alert('test')">
+  const addBtn = document.getElementById('add-btn')
+  addBtn?.addEventListener('click', () => {
+    alert('Add income')
+  })
+</script>
