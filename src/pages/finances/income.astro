@@ -4,6 +4,8 @@ import DollarIcon from '@/assets/icons/dollar.svg'
 import TrendingUpIcon from '@/assets/icons/trending-up.svg'
 import CalendarIcon from '@/assets/icons/calendar.svg'
 import Layout from '@/layouts/Layout.astro'
+import CardSections from '@/components/common/CardSections.astro'
+import FilterIcon from '@/assets/icons/filter.svg'
 ---
 
 <Layout title="Income" description="Manage your income">
@@ -20,15 +22,88 @@ import Layout from '@/layouts/Layout.astro'
       <CalendarIcon class="size-4 text-gray-300" slot="icon" />
       Diferent categories
     </CardMetrics>
-    <article class="bg-dark-light col-span-3 h-96 rounded"></article>
-    <article class="bg-dark-light col-span-3 h-96 rounded"></article>
-    <article class="bg-dark-light col-span-3 h-96 rounded"></article>
+    <CardSections title="Income History" subtitle="Detailed list of all your income" colSpan="3">
+      <button
+        slot="actions"
+        class="bg-secondary hover:bg-tertiary text-dark flex cursor-pointer gap-2 rounded px-3 py-2 text-sm font-semibold"
+      >
+        <FilterIcon class="size-4" />
+        Filter
+      </button>
+      <div class="relative overflow-x-auto">
+        <table class="text-light w-full text-left text-sm rtl:text-right">
+          <thead class="bg-border text-tertiary uppercase">
+            <tr>
+              <th scope="col" class="px-6 py-3"> Concept </th>
+              <th scope="col" class="px-6 py-3"> Category </th>
+              <th scope="col" class="px-6 py-3"> Type </th>
+              <th scope="col" class="px-6 py-3"> Date </th>
+              <th scope="col" class="px-6 py-3"> Mount </th>
+            </tr>
+          </thead>
+          <tbody class="font-light">
+            <tr class="">
+              <td scope="row" class="whitespace-nowrap px-6 py-4"> Freelance </td>
+              <td class="px-6 py-4"> Work </td>
+              <td class="px-6 py-4"> Variable </td>
+              <td class="px-6 py-4"> 2025-02-08 </td>
+              <td class="px-6 py-4"> $400 </td>
+            </tr>
+            <tr class="">
+              <td scope="row" class="whitespace-nowrap px-6 py-4"> Salary </td>
+              <td class="px-6 py-4"> Work </td>
+              <td class="px-6 py-4"> Fixed </td>
+              <td class="px-6 py-4"> 2025-01-01 </td>
+              <td class="px-6 py-4"> $250 </td>
+            </tr>
+            <tr class="">
+              <td scope="row" class="whitespace-nowrap px-6 py-4"> Trading </td>
+              <td class="px-6 py-4"> Investing </td>
+              <td class="px-6 py-4"> Pasive </td>
+              <td class="px-6 py-4"> 2025-11-05 </td>
+              <td class="px-6 py-4"> $40 </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </CardSections>
   </div>
+  <dialog
+    class="bg-surface backdrop:bg-overlay relative mx-auto my-auto rounded p-4 text-center"
+    id="add-income-dialog"
+    onclick="if (event.target === this) this.close()"
+  >
+    <form method="dialog">
+      <h2 class="text-light text-xl font-medium">Add New Income</h2>
+      <p class="text-sm text-gray-400">Add a new income to your financial record</p>
+      <button
+        class="bg-primary hover:bg-hover text-dark absolute right-1 top-1 size-6 cursor-pointer rounded-full"
+        >x</button
+      >
+    </form>
+  </dialog>
+  <add-button slot="header-btn">
+    <button
+      id="add-btn"
+      class="bg-secondary text-dark cursor-pointer rounded px-6 py-2 font-semibold"
+    >
+      + Add
+    </button>
+  </add-button>
 </Layout>
+<script>
+  const dialog = document.getElementById('add-income-dialog')
+  class AddButton extends HTMLElement {
+    connectedCallback() {
+      const heartButton = this.querySelector('button')
 
-<script onload="alert('test')">
-  const addBtn = document.getElementById('add-btn')
-  addBtn?.addEventListener('click', () => {
-    alert('Add income')
-  })
+      // Each time the button is clicked, update the count.
+      heartButton?.addEventListener('click', () => {
+        ;(dialog as HTMLDialogElement).showModal()
+      })
+    }
+  }
+
+  // Tell the browser to use our AddButton class for <astro-heart> elements.
+  customElements.define('add-button', AddButton)
 </script>

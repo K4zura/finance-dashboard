@@ -1,19 +1,29 @@
 @import 'tailwindcss';
 @import '@fontsource-variable/oxanium';
 
-/* --color-dark-light: #4a4b5d; */
 @theme {
   --color-dark: #2e2f3c;
-  --color-dark-light: #55505c;
-  --color-light: #eeeffc;
-  --color-primary: #5d737e;
-  --color-secondary: #faf33e;
+  --color-light: #ffffff;
+  --color-primary: #1098f7;
+  --color-secondary: #decccc;
+  --color-tertiary: #b89e97;
+  --color-surface: #3a3b4a;
+  --color-error: #f88379;
+  --color-success: #7fe7c3;
+  --color-warning: #fcdba5;
+  --color-info: #8cd2f7;
+  --color-muted: #b0b0b0;
+  --color-border: #4a4b59;
+  --color-hover: #0c7ed6;
+  --color-accent: #d8bfd8;
+  --color-overlay: rgba(0, 0, 0, 0.5);
+  --color-disabled: #6a6a78;
 }
 
 html {
   font-family: 'Oxanium Variable', 'CircularStd', sans-serif;
-  background-color: #2e2f3c;
-  color: #eeeffc;
+  background-color: var(--color-dark);
+  color: var(--color-light);
 }
 
 /* ANIMATIONS */

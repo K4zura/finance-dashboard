@@ -103,47 +103,32 @@ const { user } = Astro.props
   class="bg-primary relative flex flex-1 flex-col justify-between gap-4 overflow-y-auto overflow-x-hidden rounded-lg [grid-area:aside]"
 >
   <section class="mx-4 mt-4 flex flex-col items-center gap-0.5">
-    <picture class="border-dark mx-1 size-28 overflow-hidden rounded-full border-4">
-      <!-- <Image
-        loading="eager"
-        inferSize={true}
-        class:list={`aspect-square size-full object-cover object-center`}
-        src={user.image}
-        alt="A starry night sky."
-      /> -->
-      <!-- <Image
-        loading="eager"
-        class:list={`aspect-square object-cover object-center`}
-        src={user.photoURL}
-        alt="A starry night sky."
-      /> -->
-      <img
-        src={user?.photoURL}
-        alt=`img profile of ${user?.displayName}`
-        class="aspect-square size-full object-cover object-center"
-      />
-    </picture>
-    <h2 class="text-light text-center text-xl font-extrabold">{user?.displayName}</h2>
-    <!-- <p class="drop-shadow-secondary mt-2 text-center text-2xl font-bold drop-shadow-md">
-      $ 100.000.000
-    </p> -->
+    {
+      user ? (
+        <picture class="border-dark mx-1 size-28 overflow-hidden rounded-full border-4">
+          <img
+            loading="eager"
+            src={user?.photoURL}
+            alt=`img profile of ${user?.displayName}`
+            class="aspect-square size-full object-cover object-center"
+          />
+        </picture>
+        <h2 class="text-light text-center text-xl font-extrabold">{user?.displayName}</h2>
+      ) : (
+        <picture class="border-dark mx-1 size-28 overflow-hidden rounded-full border-4">
+          <Image
+            loading="eager"
+            src={imageProfile}
+            alt="img profile of Jinwoo"
+            class="aspect-square size-full object-cover object-center"
+          />
+        </picture>
+        <h2 class="text-light text-center text-xl font-extrabold">Jinwoo</h2>
+      )
+    }
   </section>
   <nav class="nav relative mx-2 flex flex-col justify-center gap-4">
-    <!-- <div
-      id="menu-backdrop"
-      transition:animate={scaleAnim}
-      class="bg-dark absolute top-[var(--top)] h-[var(--height)] w-full rounded-lg transition-all duration-300 ease-in-out"
-    >
-     <div
-        class="bg-dark before:bg-primary left-4/5 absolute -top-4 h-4 w-full before:absolute before:top-0 before:h-full before:w-4 before:rounded-br-full before:[content:'']"
-      >
-      </div>
-      <div
-        class="bg-dark before:bg-primary left-4/5 absolute -bottom-4 h-4 w-full before:absolute before:top-0 before:h-full before:w-4 before:rounded-tr-full before:[content:'']"
-      >
-      </div>
-    </div> -->
-    <InitBackdrop client:only="true" itemSelector="nav ul li a" />
+    <!-- <InitBackdrop client:only="true" itemSelector="nav ul li a" /> -->
 
     <div>
       <ul class="flex flex-col gap-2">
@@ -184,33 +169,11 @@ const { user } = Astro.props
   <footer class="mx-4 mb-3 flex grow basis-0 items-end justify-center">
     <form action="/api/auth/signout" class="w-full">
       <button
-        class="bg-secondary text-dark-light w-full cursor-pointer rounded py-1.5 text-center text-lg font-bold"
-        type="submit">Log Out</button
+        class="bg-dark text-light w-full cursor-pointer rounded py-1.5 text-center text-lg font-bold"
+        type="submit"
       >
+        Log Out
+      </button>
     </form>
-    <!-- <button
-      id="logout"
-      class="flex cursor-pointer items-center gap-2 py-2 pr-2 font-bold transition-all duration-200 hover:pr-7"
-    >
-      <LogoutIcon class="stroke-3 text-dark size-5" />
-      Log Out
-    </button> -->
   </footer>
 </aside>
-
-<!-- <script>
-  import { $ } from '@/utils/dom-selector'
-  const { signOut } = await import('auth-astro/client')
-
-  const $logout = $('#logout')
-  if ($logout)
-    $logout.onclick = () => {
-      signOut()
-        .then(() => {
-          window.location.href = '/'
-        })
-        .catch((error) => {
-          console.error('Error during logout:', error)
-        })
-    }
-</script> -->

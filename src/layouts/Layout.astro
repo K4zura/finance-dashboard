@@ -16,7 +16,7 @@ if (Astro.cookies.has('__session')) {
   user = await auth.getUser(decodedCookie.uid)
 }
 
-console.log(user)
+// console.log(user)
 
 interface Props {
   title: string
@@ -39,12 +39,14 @@ const { title, description } = Astro.props
     <meta name="twitter:creator" content="@k4zura" />
     <meta name="twitter:title" content="JinBoard" />
     <meta name="twitter:description" content="A dashboard to manage your finances" />
-    <ClientRouter />
+    <!-- <ClientRouter /> -->
   </head>
   <body id="app" class="gap-4 p-4">
     <AsideBar user={user} />
     <main class="flex flex-col gap-4 overflow-y-auto p-3 [grid-area:main]">
-      <Header title={title} description={description} />
+      <Header title={title} description={description}>
+        <slot name="header-btn" />
+      </Header>
       <slot />
     </main>
   </body>

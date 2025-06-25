@@ -12,8 +12,5 @@ const { title, description } = Astro.props
     <h1 class="text-4xl font-bold">{title}</h1>
     <p class="font-semibold text-gray-400">{description}</p>
   </div>
-  <button
-    class="bg-secondary text-dark-light cursor-pointer rounded px-6 py-2 font-semibold"
-    onclick="alert('already')">+ Add</button
-  >
+  <slot />
 </header>
