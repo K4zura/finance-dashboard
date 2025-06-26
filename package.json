@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",
+    "@astrojs/svelte": "^7.1.0",
     "@astrojs/vercel": "^8.2.0",
     "@fontsource-variable/oxanium": "^5.2.6",
     "@tailwindcss/vite": "^4.1.10",
@@ -26,6 +27,8 @@
     "prettier-plugin-tailwindcss": "^0.6.12",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "tailwindcss": "^4.1.10"
+    "svelte": "^5.34.8",
+    "tailwindcss": "^4.1.10",
+    "typescript": "^5.8.3"
   }
 }

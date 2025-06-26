@@ -4,13 +4,14 @@ interface Props {
 }
 
 const { href } = Astro.props
-const pathName = Astro.originPathname
 ---
 
-<li class="group relative flex text-lg font-semibold">
+<li
+  class="hover:bg-hover group relative flex rounded-lg text-lg font-semibold transition-colors duration-300"
+>
   <a
     href={href}
-    class={`z-20 flex flex-1 select-none items-center gap-2 rounded-lg px-2 py-1.5 text-sm transition-colors duration-300 ${pathName === href ? 'bg-dark' : 'hover:bg-hover'}`}
+    class="z-20 flex flex-1 select-none items-center gap-2 rounded-lg px-2 py-1.5 text-sm"
   >
     <slot />
   </a>

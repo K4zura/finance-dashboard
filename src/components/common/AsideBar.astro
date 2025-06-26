@@ -14,7 +14,7 @@ import TargetIcon from '@/assets/icons/target.svg'
 import CalendarIcon from '@/assets/icons/calendar.svg'
 import ClockIcon from '@/assets/icons/clock.svg'
 import BookIcon from '@/assets/icons/book.svg'
-import InitBackdrop from '@/components/common/InitBackdrop'
+import InitBackdrop from '@/components/common/InitBackdrop.svelte'
 import SettingsIcon from '@/assets/icons/settings.svg'
 import type { UserRecord } from 'firebase-admin/auth'
 
@@ -109,7 +109,7 @@ const { user } = Astro.props
           <img
             loading="eager"
             src={user?.photoURL}
-            alt=`img profile of ${user?.displayName}`
+            alt={`img profile of ${user?.displayName}`}
             class="aspect-square size-full object-cover object-center"
           />
         </picture>
@@ -128,7 +128,7 @@ const { user } = Astro.props
     }
   </section>
   <nav class="nav relative mx-2 flex flex-col justify-center gap-4">
-    <!-- <InitBackdrop client:only="true" itemSelector="nav ul li a" /> -->
+    <InitBackdrop client:only="svelte"/>
 
     <div>
       <ul class="flex flex-col gap-2">
