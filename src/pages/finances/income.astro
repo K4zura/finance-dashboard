@@ -6,6 +6,7 @@ import CalendarIcon from '@/assets/icons/calendar.svg'
 import Layout from '@/layouts/Layout.astro'
 import CardSections from '@/components/common/CardSections.astro'
 import FilterIcon from '@/assets/icons/filter.svg'
+import ApexChart from '@/components/finance/IncomeCharts.svelte'
 ---
 
 <Layout title="Income" description="Manage your income">
@@ -22,6 +23,9 @@ import FilterIcon from '@/assets/icons/filter.svg'
       <CalendarIcon class="size-4 text-gray-300" slot="icon" />
       Diferent categories
     </CardMetrics>
+    <CardSections title="Income chart" subtitle="Chart of your income" colSpan="3">
+      <ApexChart client:only="svelte" />
+    </CardSections>
     <CardSections title="Income History" subtitle="Detailed list of all your income" colSpan="3">
       <button
         slot="actions"
