@@ -7,6 +7,49 @@ import Layout from '@/layouts/Layout.astro'
 import CardSections from '@/components/common/CardSections.astro'
 import FilterIcon from '@/assets/icons/filter.svg'
 import ApexChart from '@/components/finance/IncomeCharts.svelte'
+import { incomeData } from '@/lib/data'
+
+function transformIncomeData(data: any[]) {
+  const monthNames = [
+    'Ene',
+    'Feb',
+    'Mar',
+    'Abr',
+    'May',
+    'Jun',
+    'Jul',
+    'Ago',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dic',
+  ]
+
+  const grouped: Record<string, Record<string, number | string>> = {}
+
+  for (const item of data) {
+    const month = monthNames[item.date.getMonth()]
+    const year = item.date.getFullYear()
+    const category = item.title
+    const amount = item.mount
+
+    const key = `${year}-${month}`
+
+    if (!grouped[key]) {
+      grouped[key] = {
+        year,
+        month,
+      }
+    }
+
+    // Ahora sí podemos indexar con strings sin error
+    grouped[key][category] = ((grouped[key][category] as number) || 0) + amount
+  }
+
+  return Object.values(grouped)
+}
+
+const chartData = transformIncomeData(incomeData)
 ---
 
 <Layout title="Income" description="Manage your income">
@@ -25,7 +68,7 @@ import ApexChart from '@/components/finance/IncomeCharts.svelte'
     </CardMetrics>
     <CardSections title="Income chart" subtitle="Chart of your income" colSpan="3">
       <div class="min-h-[350px] w-full">
-        <ApexChart client:only="svelte" />
+        <ApexChart client:only="svelte" data={chartData} />
       </div>
     </CardSections>
     <CardSections title="Income History" subtitle="Detailed list of all your income" colSpan="3">
@@ -48,27 +91,28 @@ import ApexChart from '@/components/finance/IncomeCharts.svelte'
             </tr>
           </thead>
           <tbody class="font-light">
-            <tr class="">
-              <th scope="row" class="whitespace-nowrap px-6 py-4"> Freelance </th>
-              <td class="px-6 py-4"> Work </td>
-              <td class="px-6 py-4"> Variable </td>
-              <td class="px-6 py-4"> 2025-02-08 </td>
-              <td class="px-6 py-4"> $400 </td>
-            </tr>
-            <tr class="">
-              <th scope="row" class="whitespace-nowrap px-6 py-4"> Salary </th>
-              <td class="px-6 py-4"> Work </td>
-              <td class="px-6 py-4"> Fixed </td>
-              <td class="px-6 py-4"> 2025-01-01 </td>
-              <td class="px-6 py-4"> $250 </td>
-            </tr>
-            <tr class="">
-              <th scope="row" class="whitespace-nowrap px-6 py-4"> Trading </th>
-              <td class="px-6 py-4"> Investing </td>
-              <td class="px-6 py-4"> Pasive </td>
-              <td class="px-6 py-4"> 2025-11-05 </td>
-              <td class="px-6 py-4"> $40 </td>
-            </tr>
+            {
+              incomeData
+                .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+                .map((income) => (
+                  <tr class="">
+                    <th scope="row" class="whitespace-nowrap px-6 py-4">
+                      {income.title}
+                    </th>
+                    <td class="flex items-center gap-2 px-6 py-4">
+                      <span class={`h-4 w-4 rounded-full bg-${income.category.color}-500`} />
+                      {income.category.icon} {income.category.name}
+                    </td>
+                    <td class="px-6 py-4">
+                      <span class="bg-tertiary rounded-full px-3 py-1.5">{income.type}</span>
+                    </td>
+                    <td class="px-6 py-4">{income.date.toLocaleDateString()}</td>
+                    <td class="text-success px-6 py-4 font-bold">
+                      ${income.mount.toLocaleString()}
+                    </td>
+                  </tr>
+                ))
+            }
           </tbody>
         </table>
       </div>

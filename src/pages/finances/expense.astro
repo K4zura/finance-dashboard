@@ -9,6 +9,20 @@ import ShoppingIcon from '@/assets/icons/shopping-car.svg'
 import CardSections from '@/components/common/CardSections.astro'
 import ExpensesByCategory from '@/components/finance/ExpensesByCategory.svelte'
 import ProgressBar from '@/components/finance/ProgressBar.svelte'
+import { expenseData, expenseCategories } from '@/lib/data'
+
+const expenses = expenseCategories.map((category) => {
+  const gastos = expenseData.filter((e) => e.category.name === category.name)
+  const spent = gastos.reduce((acc, g) => acc + g.mount, 0)
+
+  return {
+    category: category.name,
+    spent,
+    budget: category.budget,
+    color: category.color,
+    expenseList: gastos,
+  }
+})
 ---
 
 <Layout title="Expense" description="Manage your expense">
@@ -30,7 +44,7 @@ import ProgressBar from '@/components/finance/ProgressBar.svelte'
       2 over budget
     </CardMetrics>
     <CardSections title="Expenses by Category" subtitle="Budget Tracking by Category" colSpan="4">
-      <ExpensesByCategory client:only="svelte" />
+      <ExpensesByCategory client:only="svelte" expenses={expenses} />
     </CardSections>
     <CardSections title="Income History" subtitle="Detailed list of all your income" colSpan="4">
       <button
@@ -46,47 +60,30 @@ import ProgressBar from '@/components/finance/ProgressBar.svelte'
             <tr>
               <th scope="col" class="px-6 py-3"> Concept </th>
               <th scope="col" class="px-6 py-3"> Category </th>
-              <th scope="col" class="px-6 py-3"> Type </th>
               <th scope="col" class="px-6 py-3"> Date </th>
               <th scope="col" class="px-6 py-3"> Mount </th>
             </tr>
           </thead>
           <tbody class="font-light">
-            <tr class="">
-              <th scope="row" class="whitespace-nowrap px-6 py-4"> Freelance </th>
-              <td class="px-6 py-4"> Work </td>
-              <td class="px-6 py-4"> Variable </td>
-              <td class="px-6 py-4"> 2025-02-08 </td>
-              <td class="px-6 py-4"> $400 </td>
-            </tr>
-            <tr class="">
-              <th scope="row" class="whitespace-nowrap px-6 py-4"> Salary </th>
-              <td class="px-6 py-4"> Work </td>
-              <td class="px-6 py-4"> Fixed </td>
-              <td class="px-6 py-4"> 2025-01-01 </td>
-              <td class="px-6 py-4"> $250 </td>
-            </tr>
-            <tr class="">
-              <th scope="row" class="whitespace-nowrap px-6 py-4"> Supermercado </th>
-              <td class="px-6 py-4"> Alimentacion </td>
-              <td class="px-6 py-4"> Necesario </td>
-              <td class="px-6 py-4"> 2025-01-01 </td>
-              <td class="px-6 py-4"> $150 </td>
-            </tr>
-            <tr class="">
-              <th scope="row" class="whitespace-nowrap px-6 py-4"> Netflix </th>
-              <td class="px-6 py-4"> Entretenimiento </td>
-              <td class="px-6 py-4"> Suscripcion </td>
-              <td class="px-6 py-4"> 2025-01-01 </td>
-              <td class="px-6 py-4"> $250 </td>
-            </tr>
-            <tr class="">
-              <th scope="row" class="whitespace-nowrap px-6 py-4"> Trading </th>
-              <td class="px-6 py-4"> Investing </td>
-              <td class="px-6 py-4"> Pasive </td>
-              <td class="px-6 py-4"> 2025-11-05 </td>
-              <td class="px-6 py-4"> $40 </td>
-            </tr>
+            {
+              expenseData
+                .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+                .map((expense) => (
+                  <tr class="">
+                    <th scope="row" class="whitespace-nowrap px-6 py-4">
+                      {expense.title}
+                    </th>
+                    <td class="flex items-center gap-2 px-6 py-4">
+                      <span class={`h-4 w-4 rounded-full bg-${expense.category.color}-500`} />
+                      {expense.category.icon} {expense.category.name}
+                    </td>
+                    <td class="px-6 py-4">{expense.date.toLocaleDateString()}</td>
+                    <td class="text-error px-6 py-4 font-bold">
+                      ${expense.mount.toLocaleString()}
+                    </td>
+                  </tr>
+                ))
+            }
           </tbody>
         </table>
       </div>

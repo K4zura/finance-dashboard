@@ -131,7 +131,7 @@ const { user } = Astro.props
     <InitBackdrop client:only="svelte"/>
 
     <div>
-      <ul class="flex flex-col gap-2">
+      <ul class="flex flex-col gap-0.5">
         <BarItem href="/">
           <DashboardIcon class="size-4" />
           Dashboard
@@ -144,7 +144,7 @@ const { user } = Astro.props
           <h3 class="text-dark select-none rounded-lg px-2 text-base font-extrabold">
             {section.title}
           </h3>
-          <ul class="flex flex-col gap-2">
+          <ul class="flex flex-col gap-0.5">
             {section.items?.map((item) => (
               <BarItem href={item.url}>
                 <item.icon class="size-4" />
@@ -157,7 +157,7 @@ const { user } = Astro.props
     }
 
     <div>
-      <ul class="flex flex-col gap-2">
+      <ul class="flex flex-col gap-0.5">
         <BarItem href="/settings">
           <SettingsIcon class="size-4" />
           Settings

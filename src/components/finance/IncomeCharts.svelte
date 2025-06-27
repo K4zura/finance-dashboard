@@ -4,24 +4,19 @@
   import { slide } from 'svelte/transition'
 
   // Recibe los datos desde .astro
-  export let data = [
-    { year: 2024, month: 'Ene', Trabajo: 1500, Trading: 300, Ropa: 100, Tortas: 20, Youtube: 700 },
-    { year: 2024, month: 'Feb', Trabajo: 1800, Trading: 20, Ropa: 50, Tortas: 300, Youtube: 700 },
-    { year: 2024, month: 'Mar', Trabajo: 1700, Trading: 60, Ropa: 200, Tortas: 200, Youtube: 500 },
-    { year: 2024, month: 'Abr', Trabajo: 1500, Trading: 40, Ropa: 210, Tortas: 500, Youtube: 1200 },
-    { year: 2024, month: 'May', Trabajo: 1200, Trading: 510, Ropa: 20, Tortas: 40, Youtube: 900 },
-    { year: 2024, month: 'Jul', Trabajo: 2000, Trading: 100, Ropa: 130, Tortas: 20, Youtube: 700 },
-    { year: 2024, month: 'Jun', Trabajo: 1900, Trading: 10, Ropa: 70, Tortas: 20, Youtube: 700 },
-    { year: 2025, month: 'Ene', Trabajo: 1600, Trading: 400, Ropa: 120, Tortas: 20, Youtube: 700 },
-    { year: 2025, month: 'Feb', Trabajo: 1750, Trading: 200, Ropa: 80, Tortas: 20, Youtube: 700 },
-    { year: 2025, month: 'Mar', Trabajo: 1750, Trading: 200, Ropa: 80, Tortas: 20, Youtube: 700 },
-    { year: 2025, month: 'Abr', Trabajo: 1750, Trading: 200, Ropa: 80, Tortas: 20, Youtube: 700 },
-    { year: 2025, month: 'May', Trabajo: 1750, Trading: 200, Ropa: 80, Tortas: 20, Youtube: 700 },
-  ]
+  export let data = []
 
   let selectedYear = new Date().getFullYear()
   let selectedMonth = 'Todos'
-  const categoryLabels = ['Trabajo', 'Trading', 'Venta Ropa', 'Venta Tortas', 'Youtube']
+  $: categoryLabels = Array.from(
+    new Set(data.flatMap((item) => Object.keys(item).filter((k) => k !== 'year' && k !== 'month'))),
+  )
+
+  $: {
+    if (!availableMonths.includes(selectedMonth)) {
+      selectedMonth = 'Todos'
+    }
+  }
 
   // Obtener años disponibles desde los datos
   $: availableYears = [...new Set(data.map((item) => item.year))]
@@ -40,7 +35,7 @@
 
   // Función para sumar una categoría en todos los meses del año
   function sumCategory(category) {
-    return filteredData.reduce((total, item) => total + item[category], 0)
+    return filteredData.reduce((total, item) => total + (item[category] || 0), 0)
   }
 
   // Colores adaptados a tu tema (Tailwind o variables CSS)
@@ -106,60 +101,20 @@
     fill: {
       opacity: 1,
     },
-    series:
-      selectedMonth === 'Todos'
-        ? [
-            {
-              data: [
-                {
-                  x: 'Trabajo',
-                  y: [sumCategory('Trabajo')],
-                },
-                {
-                  x: 'Trading',
-                  y: [sumCategory('Trading')],
-                },
-                {
-                  x: 'Ropa',
-                  y: [sumCategory('Ropa')],
-                },
-                {
-                  x: 'Tortas',
-                  y: [sumCategory('Tortas')],
-                },
-                {
-                  x: 'Youtube',
-                  y: [sumCategory('Youtube')],
-                },
-              ],
-            },
-          ]
-        : [
-            {
-              data: [
-                {
-                  x: 'Trabajo',
-                  y: filteredData.map((d) => d.Trabajo),
-                },
-                {
-                  x: 'Trading',
-                  y: filteredData.map((d) => d.Trading),
-                },
-                {
-                  x: 'Ropa',
-                  y: filteredData.map((d) => d.Ropa),
-                },
-                {
-                  x: 'Tortas',
-                  y: filteredData.map((d) => d.Tortas),
-                },
-                {
-                  x: 'Youtube',
-                  y: filteredData.map((d) => d.Youtube),
-                },
-              ],
-            },
-          ],
+    series: [
+      {
+        data:
+          selectedMonth === 'Todos'
+            ? categoryLabels.map((label) => ({
+                x: label,
+                y: [sumCategory(label)],
+              }))
+            : categoryLabels.map((label) => ({
+                x: label,
+                y: filteredData.map((d) => d[label] || 0),
+              })),
+      },
+    ],
   }
 </script>
 

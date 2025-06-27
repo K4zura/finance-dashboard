@@ -1,9 +1,13 @@
 <script lang="ts">
-  type Expense = {
+  import type { Expense } from '@/lib/data'
+  import { slide } from 'svelte/transition'
+
+  type Expenses = {
     category: string
     spent: number
     budget: number
-    color: string // nombre clave como 'red', 'blue', etc.
+    color: string
+    expenseList: Expense[]
   }
 
   // Mapeo de nombre → clase Tailwind
@@ -16,32 +20,32 @@
     indigo: 'bg-indigo-500',
   }
 
-  let expenses: Expense[] = [
-    { category: 'Alimentación', spent: 195, budget: 400, color: 'red' },
-    { category: 'Transporte', spent: 60, budget: 200, color: 'blue' },
-    { category: 'Entretenimiento', spent: 15, budget: 100, color: 'green' },
-    { category: 'Servicios', spent: 85, budget: 300, color: 'yellow' },
-    { category: 'Vestimenta', spent: 120, budget: 150, color: 'purple' },
-  ]
+  export let expenses: Expenses[] = []
 
-  function addExpense() {
-    expenses = [
-      ...expenses,
-      {
-        category: 'Educación',
-        spent: 50,
-        budget: 100,
-        color: 'indigo',
-      },
-    ]
-  }
+  // function addExpense() {
+  //   expenses = [
+  //     ...expenses,
+  //     {
+  //       category: 'Educación',
+  //       spent: 50,
+  //       budget: 100,
+  //       color: 'indigo',
+  //     },
+  //   ]
+  // }
+  let expandedIndex: number | null = null
 </script>
 
-<div class="rounded-xl p-4 bg-dark shadow-sm w-full">
-  {#each expenses as { category, spent, budget, color }, index}
+<div class="w-full">
+  {#each expenses as { category, spent, budget, color, expenseList }, index}
     {@const percentage = (spent / budget) * 100}
     {@const remaining = budget - spent}
-    <div class="mb-4">
+    <!-- svelte-ignore a11y_click_events_have_key_events -->
+    <!-- svelte-ignore a11y_no_static_element_interactions -->
+    <div
+      class="mb-4 cursor-pointer bg-dark p-4 rounded-xl shadow-sm"
+      on:click={() => (expandedIndex = expandedIndex === index ? null : index)}
+    >
       <div class="flex justify-between items-center mb-1">
         <div class="flex items-center gap-2">
           <span class={`w-3 h-3 rounded-full ${colorClasses[color]}`}></span>
@@ -58,6 +62,20 @@
       <div class="text-xs text-gray-500">
         {percentage.toFixed(1)}% used · Remaining: ${remaining}
       </div>
+      {#if expandedIndex === index}
+        <section class="mt-2 text-sm px-2 text-muted transition-all" transition:slide>
+          <h2 class="text-lg font-semibold">Detalle de Gastos</h2>
+          <ul class="mt-1 flex flex-col px-3">
+            {#each expenseList as { title, date, mount }}
+              <li>
+                <h3 class="text-md">{title}</h3>
+                <p>{mount}</p>
+                <p>{date.toLocaleDateString()}</p>
+              </li>
+            {/each}
+          </ul>
+        </section>
+      {/if}
     </div>
   {/each}
 
