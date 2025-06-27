@@ -1,7 +1,35 @@
 ---
+import CardMetrics from '@/components/common/CardMetrics.astro'
 import Layout from '@/layouts/Layout.astro'
+import DollarIcon from '@/assets/icons/dollar.svg'
+import TrendingUpIcon from '@/assets/icons/trending-up.svg'
+import TrendingDownIcon from '@/assets/icons/trending-down.svg'
+import CalendarIcon from '@/assets/icons/calendar.svg'
+import CardSections from '@/components/common/CardSections.astro'
+import ExpensesByCategory from '@/components/finance/ExpensesByCategory.svelte'
+import ProgressBar from '@/components/finance/ProgressBar.svelte'
 ---
 
 <Layout title="Expense" description="Manage your expense">
-  <h1>Expense</h1>
+  <div class="grid grid-cols-4 gap-4 space-y-1">
+    <CardMetrics title="Total of month" value="$3.450" percentage="+8.2%">
+      <DollarIcon class="size-4 text-gray-300" slot="icon" />
+      vs last month
+    </CardMetrics>
+    <CardMetrics title="Budget" value="$1150">
+      <TrendingUpIcon class="size-4 text-gray-300" slot="icon" />
+      <ProgressBar />
+    </CardMetrics>
+    <CardMetrics title="Daily Average" value="$16">
+      <CalendarIcon class="size-4 text-gray-300" slot="icon" />
+      Based on 30 days
+    </CardMetrics>
+    <CardMetrics title="Categories" value="5">
+      <CalendarIcon class="size-4 text-gray-300" slot="icon" />
+      2 over budget
+    </CardMetrics>
+    <CardSections title="Expenses by Category" subtitle="Budget Tracking by Category" colSpan="4">
+      <ExpensesByCategory client:only="svelte" />
+    </CardSections>
+  </div>
 </Layout>

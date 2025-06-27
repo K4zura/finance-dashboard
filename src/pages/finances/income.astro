@@ -24,7 +24,9 @@ import ApexChart from '@/components/finance/IncomeCharts.svelte'
       Diferent categories
     </CardMetrics>
     <CardSections title="Income chart" subtitle="Chart of your income" colSpan="3">
-      <ApexChart client:only="svelte" />
+      <div class="min-h-[350px] w-full">
+        <ApexChart client:only="svelte" />
+      </div>
     </CardSections>
     <CardSections title="Income History" subtitle="Detailed list of all your income" colSpan="3">
       <button
@@ -47,21 +49,21 @@ import ApexChart from '@/components/finance/IncomeCharts.svelte'
           </thead>
           <tbody class="font-light">
             <tr class="">
-              <td scope="row" class="whitespace-nowrap px-6 py-4"> Freelance </td>
+              <th scope="row" class="whitespace-nowrap px-6 py-4"> Freelance </th>
               <td class="px-6 py-4"> Work </td>
               <td class="px-6 py-4"> Variable </td>
               <td class="px-6 py-4"> 2025-02-08 </td>
               <td class="px-6 py-4"> $400 </td>
             </tr>
             <tr class="">
-              <td scope="row" class="whitespace-nowrap px-6 py-4"> Salary </td>
+              <th scope="row" class="whitespace-nowrap px-6 py-4"> Salary </th>
               <td class="px-6 py-4"> Work </td>
               <td class="px-6 py-4"> Fixed </td>
               <td class="px-6 py-4"> 2025-01-01 </td>
               <td class="px-6 py-4"> $250 </td>
             </tr>
             <tr class="">
-              <td scope="row" class="whitespace-nowrap px-6 py-4"> Trading </td>
+              <th scope="row" class="whitespace-nowrap px-6 py-4"> Trading </th>
               <td class="px-6 py-4"> Investing </td>
               <td class="px-6 py-4"> Pasive </td>
               <td class="px-6 py-4"> 2025-11-05 </td>
