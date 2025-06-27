@@ -8,7 +8,9 @@ interface Props {
 const { title, subtitle, colSpan } = Astro.props
 ---
 
-<article class=`bg-surface flex flex-col justify-center col-span-${colSpan} gap-4 rounded p-4`>
+<article
+  class=`relative bg-surface flex flex-col justify-center col-span-${colSpan} gap-4 rounded p-4`
+>
   <div class="flex items-center justify-between">
     <div class="flex flex-col justify-between">
       <h2 class="text-2xl font-semibold">{title}</h2>

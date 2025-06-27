@@ -32,5 +32,8 @@
     "svelte-apexcharts": "^1.0.2",
     "tailwindcss": "^4.1.10",
     "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@types/date-fns": "^2.6.3"
   }
 }

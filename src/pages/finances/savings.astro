@@ -1,7 +1,72 @@
 ---
+import CardMetrics from '@/components/common/CardMetrics.astro'
 import Layout from '@/layouts/Layout.astro'
+import TrendingUpIcon from '@/assets/icons/trending-up.svg'
+import PigIcon from '@/assets/icons/piggy-bank.svg'
+import TargetIcon from '@/assets/icons/target.svg'
+import CalendarIcon from '@/assets/icons/calendar.svg'
+import ProgressBar from '@/components/finance/ProgressBar.svelte'
+import CardSections from '@/components/common/CardSections.astro'
+import SavingGoalCard from '@/components/finance/SavingGoalCard.svelte'
+
+const goals = [
+  {
+    title: 'House',
+    color: 'red',
+    category: 'Housing',
+    priority: 'High',
+    total: 25000,
+    saved: 8500,
+    monthly: 800,
+    deadline: '2025-11-30',
+  },
+  {
+    title: 'New Motorcycle',
+    color: 'purple',
+    category: 'Transport',
+    priority: 'Low',
+    total: 40000000,
+    saved: 6000000,
+    monthly: 1200000,
+    deadline: '2024-12-31',
+  },
+  {
+    title: 'PC Build',
+    color: 'blue',
+    category: 'Technology',
+    priority: 'Medium',
+    total: 1900000,
+    saved: 1250000,
+    monthly: 50000,
+    deadline: '2025-12-31',
+  },
+]
 ---
 
 <Layout title="Savings" description="Manage your savings">
-  <h1>Savings</h1>
+  <div class="grid grid-cols-4 gap-4 space-y-1">
+    <CardMetrics title="Total Saved" value="$20000" percentage="+8.2%">
+      <PigIcon class="size-4 text-gray-300" slot="icon" />
+      vs Previous Month
+    </CardMetrics>
+    <CardMetrics title="Total Goal" value="$45000">
+      <TargetIcon class="size-4 text-gray-300" slot="icon" />
+      <ProgressBar />
+    </CardMetrics>
+    <CardMetrics title="Monthly Savings" value="$2200">
+      <TrendingUpIcon class="size-4 text-gray-300" slot="icon" />
+      Sum of All Goals
+    </CardMetrics>
+    <CardMetrics title="Active Goals" value="5">
+      <CalendarIcon class="size-4 text-gray-300" slot="icon" />
+      0 Completed
+    </CardMetrics>
+    {
+      goals.map((goal) => (
+        <CardSections title={goal.title} subtitle={goal.category} colSpan="2">
+          <SavingGoalCard client:only="svelte" goal={goal} />
+        </CardSections>
+      ))
+    }
+  </div>
 </Layout>
