@@ -1,10 +1,11 @@
 ---
 import CardMetrics from '@/components/common/CardMetrics.astro'
 import Layout from '@/layouts/Layout.astro'
-import DollarIcon from '@/assets/icons/dollar.svg'
-import TrendingUpIcon from '@/assets/icons/trending-up.svg'
 import TrendingDownIcon from '@/assets/icons/trending-down.svg'
-import CalendarIcon from '@/assets/icons/calendar.svg'
+import FilterIcon from '@/assets/icons/filter.svg'
+import AlertIcon from '@/assets/icons/alert.svg'
+import CardIcon from '@/assets/icons/card.svg'
+import ShoppingIcon from '@/assets/icons/shopping-car.svg'
 import CardSections from '@/components/common/CardSections.astro'
 import ExpensesByCategory from '@/components/finance/ExpensesByCategory.svelte'
 import ProgressBar from '@/components/finance/ProgressBar.svelte'
@@ -13,23 +14,118 @@ import ProgressBar from '@/components/finance/ProgressBar.svelte'
 <Layout title="Expense" description="Manage your expense">
   <div class="grid grid-cols-4 gap-4 space-y-1">
     <CardMetrics title="Total of month" value="$3.450" percentage="+8.2%">
-      <DollarIcon class="size-4 text-gray-300" slot="icon" />
+      <TrendingDownIcon class="size-4 text-gray-300" slot="icon" />
       vs last month
     </CardMetrics>
     <CardMetrics title="Budget" value="$1150">
-      <TrendingUpIcon class="size-4 text-gray-300" slot="icon" />
+      <CardIcon class="size-4 text-gray-300" slot="icon" />
       <ProgressBar />
     </CardMetrics>
     <CardMetrics title="Daily Average" value="$16">
-      <CalendarIcon class="size-4 text-gray-300" slot="icon" />
+      <ShoppingIcon class="size-4 text-gray-300" slot="icon" />
       Based on 30 days
     </CardMetrics>
     <CardMetrics title="Categories" value="5">
-      <CalendarIcon class="size-4 text-gray-300" slot="icon" />
+      <AlertIcon class="size-4 text-gray-300" slot="icon" />
       2 over budget
     </CardMetrics>
     <CardSections title="Expenses by Category" subtitle="Budget Tracking by Category" colSpan="4">
       <ExpensesByCategory client:only="svelte" />
     </CardSections>
+    <CardSections title="Income History" subtitle="Detailed list of all your income" colSpan="4">
+      <button
+        slot="actions"
+        class="bg-secondary hover:bg-tertiary text-dark flex cursor-pointer gap-2 rounded px-3 py-2 text-sm font-semibold"
+      >
+        <FilterIcon class="size-4" />
+        Filter
+      </button>
+      <div class="relative overflow-x-auto">
+        <table class="text-light w-full text-left text-sm rtl:text-right">
+          <thead class="bg-border text-tertiary uppercase">
+            <tr>
+              <th scope="col" class="px-6 py-3"> Concept </th>
+              <th scope="col" class="px-6 py-3"> Category </th>
+              <th scope="col" class="px-6 py-3"> Type </th>
+              <th scope="col" class="px-6 py-3"> Date </th>
+              <th scope="col" class="px-6 py-3"> Mount </th>
+            </tr>
+          </thead>
+          <tbody class="font-light">
+            <tr class="">
+              <th scope="row" class="whitespace-nowrap px-6 py-4"> Freelance </th>
+              <td class="px-6 py-4"> Work </td>
+              <td class="px-6 py-4"> Variable </td>
+              <td class="px-6 py-4"> 2025-02-08 </td>
+              <td class="px-6 py-4"> $400 </td>
+            </tr>
+            <tr class="">
+              <th scope="row" class="whitespace-nowrap px-6 py-4"> Salary </th>
+              <td class="px-6 py-4"> Work </td>
+              <td class="px-6 py-4"> Fixed </td>
+              <td class="px-6 py-4"> 2025-01-01 </td>
+              <td class="px-6 py-4"> $250 </td>
+            </tr>
+            <tr class="">
+              <th scope="row" class="whitespace-nowrap px-6 py-4"> Supermercado </th>
+              <td class="px-6 py-4"> Alimentacion </td>
+              <td class="px-6 py-4"> Necesario </td>
+              <td class="px-6 py-4"> 2025-01-01 </td>
+              <td class="px-6 py-4"> $150 </td>
+            </tr>
+            <tr class="">
+              <th scope="row" class="whitespace-nowrap px-6 py-4"> Netflix </th>
+              <td class="px-6 py-4"> Entretenimiento </td>
+              <td class="px-6 py-4"> Suscripcion </td>
+              <td class="px-6 py-4"> 2025-01-01 </td>
+              <td class="px-6 py-4"> $250 </td>
+            </tr>
+            <tr class="">
+              <th scope="row" class="whitespace-nowrap px-6 py-4"> Trading </th>
+              <td class="px-6 py-4"> Investing </td>
+              <td class="px-6 py-4"> Pasive </td>
+              <td class="px-6 py-4"> 2025-11-05 </td>
+              <td class="px-6 py-4"> $40 </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </CardSections>
   </div>
+  <add-button-expense slot="header-btn">
+    <dialog
+      class="bg-surface backdrop:bg-overlay relative mx-auto my-auto rounded p-4 text-center"
+      id="add-expense-dialog"
+      onclick="if (event.target === this) this.close()"
+    >
+      <form method="dialog">
+        <h2 class="text-light text-xl font-medium">Add New Expense</h2>
+        <p class="text-sm text-gray-400">Add a new Expense to your financial record</p>
+        <button
+          class="bg-primary hover:bg-hover text-dark absolute right-1 top-1 size-6 cursor-pointer rounded-full"
+          >x</button
+        >
+      </form>
+    </dialog>
+    <button class="bg-secondary text-dark cursor-pointer rounded px-6 py-2 font-semibold">
+      + Add
+    </button>
+  </add-button-expense>
 </Layout>
+<script>
+  class AddButton extends HTMLElement {
+    connectedCallback() {
+      const dialoge = this.querySelector('dialog')
+      const heartButton = this.querySelector('button')
+
+      // Each time the button is clicked, update the count.
+      heartButton?.addEventListener('click', () => {
+        ;(dialoge as HTMLDialogElement).showModal()
+        console.log('holas')
+      })
+    }
+  }
+
+  // Tell the browser to use our AddButton class for <astro-heart> elements.
+  customElements.define('add-button-expense', AddButton)
+</script>

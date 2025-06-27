@@ -1,7 +1,7 @@
 <script>
   import { chart } from 'svelte-apexcharts'
   import { onMount } from 'svelte'
-  import { fade } from 'svelte/transition'
+  import { slide } from 'svelte/transition'
 
   // Recibe los datos desde .astro
   export let data = [
@@ -66,6 +66,18 @@
       height: 350,
       background: bgColor,
       fontFamily: 'Oxanium Variable',
+      animations: {
+        enabled: true,
+        speed: 800,
+        animateGradually: {
+          enabled: false,
+          delay: 150,
+        },
+        dynamicAnimation: {
+          enabled: true,
+          speed: 350,
+        },
+      },
     },
     theme: {
       mode: 'dark',
@@ -187,6 +199,6 @@
 
 <div
   use:chart={options}
-  transition:fade={{ duration: 500 }}
-  class="min-h-[350px] bg-surface rounded-xl shadow-lg p-4"
+  transition:slide={{ duration: 500 }}
+  class="min-h-[350px] bg-surface rounded-xl shadow-lg shadow-dark p-4"
 />
