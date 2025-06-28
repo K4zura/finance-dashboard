@@ -17,18 +17,22 @@ import BookIcon from '@/assets/icons/book.svg'
 import InitBackdrop from '@/components/common/InitBackdrop.svelte'
 import SettingsIcon from '@/assets/icons/settings.svg'
 import type { UserRecord } from 'firebase-admin/auth'
+import { getTranslations } from '@/i18n/index'
+
+const lang = Astro.params.lang
+const t = getTranslations(lang ?? 'es') // Provide default language if undefined
 
 const menuItems = [
   {
     title: 'Finanzas',
     items: [
       {
-        title: 'Income',
+        title: t.income.title,
         url: '/finances/income',
         icon: TrendingUpIcon,
       },
       {
-        title: 'Expense',
+        title: t.expense.title,
         url: '/finances/expense',
         icon: TrendingDownIcon,
       },

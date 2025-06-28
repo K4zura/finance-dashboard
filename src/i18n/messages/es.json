@@ -1,0 +1,36 @@
+{
+  "layout": {
+    "title": "Tablero",
+    "description": "Un tablero para administrar tus finanzas"
+  },
+  "income": {
+    "title": "Ingresos",
+    "description": "Administra tus ingresos",
+    "total_month": "Total del mes",
+    "daily_avg": "Promedio diario",
+    "active_sources": "Fuentes activas",
+    "vs_last_month": "vs mes anterior",
+    "based_on_30": "Basado en 30 días",
+    "different_categories": "Diferentes categorías",
+    "add_income": "Agregar nuevo ingreso",
+    "filter": "Filtrar",
+    "income_history": "Hitorial de Ingresos",
+    "history_desc": "Lista detalla de todos tus ingresos",
+    "concept": "Concepto",
+    "category": "Categoria",
+    "type": "Tipo",
+    "date": "Fecha",
+    "mount": "Monto",
+    "income_chart": "Grafico de Ingresos",
+    "chart_desc": "Grafico de todos tus ingresos"
+  },
+  "expense": {
+    "title": "Gastos"
+  },
+  "auth": {
+    "login": "Iniciar sesión",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "forgot": "¿Olvidaste tu contraseña?"
+  }
+}

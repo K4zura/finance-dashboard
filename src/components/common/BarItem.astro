@@ -1,8 +1,12 @@
 ---
+import { incomeData } from '@/lib/data'
+import { getTranslations } from '@/i18n/index'
+
+const lang = Astro.params.lang
+const t = getTranslations(lang ?? 'es') // Provide default language if undefined
 interface Props {
   href: string
 }
-
 const { href } = Astro.props
 ---
 
@@ -10,7 +14,7 @@ const { href } = Astro.props
   class="hover:bg-hover group relative flex rounded-lg text-lg font-semibold transition-colors duration-300"
 >
   <a
-    href={href}
+    href={`/${lang}${href}`}
     class="z-20 flex flex-1 select-none items-center gap-2 rounded-lg px-2 py-1.5 text-[0.8rem]"
   >
     <slot />

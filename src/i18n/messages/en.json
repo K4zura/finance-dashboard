@@ -1,0 +1,36 @@
+{
+  "layout": {
+    "title": "Dashboard",
+    "description": "A dashboard to manage your finances"
+  },
+  "income": {
+    "title": "Income",
+    "description": "Manage your income",
+    "total_month": "Total of month",
+    "daily_avg": "Daily average",
+    "active_sources": "Active sources",
+    "vs_last_month": "vs last month",
+    "based_on_30": "Based on 30 days",
+    "different_categories": "Different categories",
+    "add_income": "Add New Income",
+    "filter": "Filter",
+    "income_history": "Income Histoy",
+    "history_desc": "Detailed list of all your income",
+    "concept": "Concept",
+    "category": "Category",
+    "type": "Type",
+    "date": "Date",
+    "mount": "Mount",
+    "income_chart": "Income Chart",
+    "chart_desc": "Chart of your income"
+  },
+  "expense": {
+    "title": "Expense"
+  },
+  "auth": {
+    "login": "Login",
+    "email": "E-mail",
+    "password": "Password",
+    "forgot": "Forgot the password?"
+  }
+}

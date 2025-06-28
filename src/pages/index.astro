@@ -1,37 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro'
-import DollarIcon from '@/assets/icons/dollar.svg'
-import TrendingUpIcon from '@/assets/icons/trending-up.svg'
-import TrendingDownIcon from '@/assets/icons/trending-down.svg'
-import CardMetrics from '@/components/common/CardMetrics.astro'
+
+Astro.redirect(`/es/`)
 ---
 
-<Layout title="Personal Dashboard" description="Welcome back. Here's a summary of your progress.">
-  <div class="grid grid-cols-6 items-start gap-4 overflow-y-clip">
-    <div class="col-span-4 grid grid-cols-3 gap-4">
-      <CardMetrics title="Total Balance" value="$12.000" percentage="+8.2%">
-        <DollarIcon class="size-4 text-gray-300" slot="icon" />
-        from last month
-      </CardMetrics>
-      <CardMetrics title="Revenue of the month" value="$3.200" percentage="+12.5%">
-        <TrendingUpIcon class="size-4 text-gray-300" slot="icon" />
-        vs last month
-      </CardMetrics>
-      <CardMetrics title="Expenses of the month" value="$1.850" percentage="-5.1%">
-        <TrendingDownIcon class="size-4 text-gray-300" slot="icon" />
-        vs last month
-      </CardMetrics>
-      <article class="bg-surface col-span-3 h-96 rounded"></article>
-      <article class="bg-surface col-span-3 h-96 rounded"></article>
-      <article class="bg-surface col-span-3 h-96 rounded"></article>
-    </div>
-
-    <div class="col-span-2 grid gap-4">
-      <article class="bg-surface h-80 rounded"></article>
-      <article class="bg-surface h-72 rounded"></article>
-      <article class="bg-surface h-44 rounded"></article>
-      <article class="bg-surface h-44 rounded"></article>
-      <article class="bg-surface h-44 rounded"></article>
-    </div>
-  </div>
-</Layout>
+<Layout title="incio" description="holas" />
