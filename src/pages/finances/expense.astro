@@ -60,6 +60,7 @@ const expenses = expenseCategories.map((category) => {
             <tr>
               <th scope="col" class="px-6 py-3"> Concept </th>
               <th scope="col" class="px-6 py-3"> Category </th>
+              <th scope="col" class="px-6 py-3"> Frecuency </th>
               <th scope="col" class="px-6 py-3"> Date </th>
               <th scope="col" class="px-6 py-3"> Mount </th>
             </tr>
@@ -77,9 +78,12 @@ const expenses = expenseCategories.map((category) => {
                       <span class={`h-4 w-4 rounded-full bg-${expense.category.color}-500`} />
                       {expense.category.icon} {expense.category.name}
                     </td>
+                    <td class="px-6 py-4">
+                      <span class="bg-disabled rounded-full px-2 py-1.5">{expense.frequency}</span>
+                    </td>
                     <td class="px-6 py-4">{expense.date.toLocaleDateString()}</td>
                     <td class="text-error px-6 py-4 font-bold">
-                      ${expense.mount.toLocaleString()}
+                      - ${expense.mount.toLocaleString()}
                     </td>
                   </tr>
                 ))
