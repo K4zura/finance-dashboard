@@ -1,44 +1,44 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
-  import { format } from 'date-fns'
-  import type { SavingGoal } from '@/types/savings'
-  export let goal: SavingGoal
+import { format } from "date-fns";
+import { onMount } from "svelte";
+import type { SavingGoal } from "@/types/savings";
+export let goal: SavingGoal;
 
-  let editing = false
-  let editedGoal = { ...goal }
+let editing = false;
+let editedGoal = { ...goal };
 
-  let percent = 0
-  let remaining = 0
-  let monthsLeft = 0
-  let daysLeft = 0
-  let deadlinePassed = false
-  let newAmount = ''
-  let isCompleted = false
+let percent = 0;
+let remaining = 0;
+let monthsLeft = 0;
+let daysLeft = 0;
+let deadlinePassed = false;
+let newAmount = "";
+let isCompleted = false;
 
-  const updateStats = () => {
-    percent = (goal.saved / goal.total) * 100
-    remaining = goal.total - goal.saved
-    monthsLeft = Math.ceil(remaining / goal.monthly)
-    isCompleted = goal.saved >= goal.total
+const updateStats = () => {
+	percent = (goal.saved / goal.total) * 100;
+	remaining = goal.total - goal.saved;
+	monthsLeft = Math.ceil(remaining / goal.monthly);
+	isCompleted = goal.saved >= goal.total;
 
-    const today = new Date()
-    const deadline = new Date(goal.deadline)
-    const msLeft = deadline.getTime() - today.getTime()
-    daysLeft = Math.ceil(msLeft / (1000 * 60 * 60 * 24))
-    deadlinePassed = msLeft < 0
-  }
+	const today = new Date();
+	const deadline = new Date(goal.deadline);
+	const msLeft = deadline.getTime() - today.getTime();
+	daysLeft = Math.ceil(msLeft / (1000 * 60 * 60 * 24));
+	deadlinePassed = msLeft < 0;
+};
 
-  const addSavings = () => {
-    if (goal.saved + goal.monthly > goal.total) {
-      goal.monthly = goal.total - goal.saved
-    }
-    if (!isNaN(goal.monthly) && goal.monthly >= 0) {
-      goal.saved += goal.monthly
-      updateStats()
-    }
-  }
+const addSavings = () => {
+	if (goal.saved + goal.monthly > goal.total) {
+		goal.monthly = goal.total - goal.saved;
+	}
+	if (!isNaN(goal.monthly) && goal.monthly >= 0) {
+		goal.saved += goal.monthly;
+		updateStats();
+	}
+};
 
-  onMount(updateStats)
+onMount(updateStats);
 </script>
 
 <article class="flex flex-col gap-0.5 px-2">

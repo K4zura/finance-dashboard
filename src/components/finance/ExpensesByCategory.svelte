@@ -1,39 +1,39 @@
 <script lang="ts">
-  import type { Expense } from '@/lib/data'
-  import { slide } from 'svelte/transition'
+import { slide } from "svelte/transition";
+import type { Expense } from "@/lib/data";
 
-  type Expenses = {
-    category: string
-    spent: number
-    budget: number
-    color: string
-    expenseList: Expense[]
-  }
+type Expenses = {
+	category: string;
+	spent: number;
+	budget: number;
+	color: string;
+	expenseList: Expense[];
+};
 
-  // Mapeo de nombre → clase Tailwind
-  const colorClasses: Record<string, string> = {
-    red: 'bg-red-500',
-    blue: 'bg-blue-500',
-    green: 'bg-green-500',
-    yellow: 'bg-yellow-500',
-    purple: 'bg-purple-500',
-    indigo: 'bg-indigo-500',
-  }
+// Mapeo de nombre → clase Tailwind
+const colorClasses: Record<string, string> = {
+	red: "bg-red-500",
+	blue: "bg-blue-500",
+	green: "bg-green-500",
+	yellow: "bg-yellow-500",
+	purple: "bg-purple-500",
+	indigo: "bg-indigo-500",
+};
 
-  export let expenses: Expenses[] = []
+export let expenses: Expenses[] = [];
 
-  // function addExpense() {
-  //   expenses = [
-  //     ...expenses,
-  //     {
-  //       category: 'Educación',
-  //       spent: 50,
-  //       budget: 100,
-  //       color: 'indigo',
-  //     },
-  //   ]
-  // }
-  let expandedIndex: number | null = null
+// function addExpense() {
+//   expenses = [
+//     ...expenses,
+//     {
+//       category: 'Educación',
+//       spent: 50,
+//       budget: 100,
+//       color: 'indigo',
+//     },
+//   ]
+// }
+let expandedIndex: number | null = null;
 </script>
 
 <div class="w-full flex flex-col gap-4">

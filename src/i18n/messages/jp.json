@@ -1,36 +1,42 @@
 {
-  "layout": {
-    "title": "ダッシュボード",
-    "description": "あなたの財務を管理するためのダッシュボード"
-  },
-  "income": {
-    "title": "収入",
-    "description": "収入を管理する",
-    "total_month": "今月の合計",
-    "daily_avg": "1日あたりの平均",
-    "active_sources": "アクティブな収入源",
-    "vs_last_month": "前月比",
-    "based_on_30": "30日間に基づく",
-    "different_categories": "さまざまなカテゴリ",
-    "add_income": "新しい収入を追加",
-    "filter": "フィルター",
-    "income_history": "Income Histoy",
-    "history_desc": "Detailed list of all your income",
-    "concept": "Concept",
-    "category": "Category",
-    "type": "Type",
-    "date": "Date",
-    "mount": "Mount",
-    "income_chart": "Income Chart",
-    "chart_desc": "Chart of your income"
-  },
-  "expense": {
-    "title": "Expense"
-  },
-  "auth": {
-    "login": "ログイン",
-    "email": "メールアドレス",
-    "password": "パスワード",
-    "forgot": "パスワードをお忘れですか？"
-  }
+	"layout": {
+		"title": "ダッシュボード",
+		"description": "あなたの財務を管理するためのダッシュボード"
+	},
+	"income": {
+		"title": "収入",
+		"description": "収入を管理する",
+		"total_month": "今月の合計",
+		"daily_avg": "1日あたりの平均",
+		"active_sources": "アクティブな収入源",
+		"vs_last_month": "前月比",
+		"based_on_30": "30日間に基づく",
+		"different_categories": "さまざまなカテゴリ",
+		"add_income": "新しい収入を追加",
+		"filter": "フィルター",
+		"income_history": "Income Histoy",
+		"history_desc": "Detailed list of all your income",
+		"concept": "Concept",
+		"category": "Category",
+		"type": "Type",
+		"date": "Date",
+		"mount": "Mount",
+		"income_chart": "Income Chart",
+		"chart_desc": "Chart of your income"
+	},
+	"expense": {
+		"title": "Expense"
+	},
+	"savings": {
+		"title": "Savings"
+	},
+	"budget": {
+		"title": "Budget"
+	},
+	"auth": {
+		"login": "ログイン",
+		"email": "メールアドレス",
+		"password": "パスワード",
+		"forgot": "パスワードをお忘れですか？"
+	}
 }

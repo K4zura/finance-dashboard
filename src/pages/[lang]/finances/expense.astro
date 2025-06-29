@@ -1,28 +1,28 @@
 ---
-import CardMetrics from '@/components/common/CardMetrics.astro'
-import Layout from '@/layouts/Layout.astro'
-import TrendingDownIcon from '@/assets/icons/trending-down.svg'
-import FilterIcon from '@/assets/icons/filter.svg'
-import AlertIcon from '@/assets/icons/alert.svg'
-import CardIcon from '@/assets/icons/card.svg'
-import ShoppingIcon from '@/assets/icons/shopping-car.svg'
-import CardSections from '@/components/common/CardSections.astro'
-import ExpensesByCategory from '@/components/finance/ExpensesByCategory.svelte'
-import ProgressBar from '@/components/finance/ProgressBar.svelte'
-import { expenseData, expenseCategories } from '@/lib/data'
+import AlertIcon from "@/assets/icons/alert.svg";
+import CardIcon from "@/assets/icons/card.svg";
+import FilterIcon from "@/assets/icons/filter.svg";
+import ShoppingIcon from "@/assets/icons/shopping-car.svg";
+import TrendingDownIcon from "@/assets/icons/trending-down.svg";
+import CardMetrics from "@/components/common/CardMetrics.astro";
+import CardSections from "@/components/common/CardSections.astro";
+import ExpensesByCategory from "@/components/finance/ExpensesByCategory.svelte";
+import ProgressBar from "@/components/finance/ProgressBar.svelte";
+import Layout from "@/layouts/Layout.astro";
+import { expenseCategories, expenseData } from "@/lib/data";
 
 const expenses = expenseCategories.map((category) => {
-  const gastos = expenseData.filter((e) => e.category.name === category.name)
-  const spent = gastos.reduce((acc, g) => acc + g.mount, 0)
+	const gastos = expenseData.filter((e) => e.category.name === category.name);
+	const spent = gastos.reduce((acc, g) => acc + g.mount, 0);
 
-  return {
-    category: category.name,
-    spent,
-    budget: category.budget,
-    color: category.color,
-    expenseList: gastos,
-  }
-})
+	return {
+		category: category.name,
+		spent,
+		budget: category.budget,
+		color: category.color,
+		expenseList: gastos,
+	};
+});
 ---
 
 <Layout title="Expense" description="Manage your expense">

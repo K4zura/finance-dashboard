@@ -1,50 +1,50 @@
 ---
-import InfoIcon from '@/assets/icons/brands/info.svg'
-import GoogleIcon from '@/assets/icons/brands/google.svg'
-import UserIcon from '@/assets/icons/brands/user.svg'
+import GoogleIcon from "@/assets/icons/brands/google.svg";
+import InfoIcon from "@/assets/icons/brands/info.svg";
+import UserIcon from "@/assets/icons/brands/user.svg";
 
 interface Props {
-  side: string
-  post: string
+	side: string;
+	post: string;
 }
 
-const { side, post } = Astro.props
+const { side, post } = Astro.props;
 
-let anim
-if (side === 'left') {
-  anim = {
-    old: {
-      name: 'hide-left',
-      duration: '0.3s',
-      easing: 'ease-in',
-      direction: 'reverse',
-    },
-    new: {
-      name: 'appear-left',
-      duration: '0.3s',
-      easing: 'ease-in-out',
-    },
-  }
+let anim;
+if (side === "left") {
+	anim = {
+		old: {
+			name: "hide-left",
+			duration: "0.3s",
+			easing: "ease-in",
+			direction: "reverse",
+		},
+		new: {
+			name: "appear-left",
+			duration: "0.3s",
+			easing: "ease-in-out",
+		},
+	};
 } else {
-  anim = {
-    old: {
-      name: 'hide-right',
-      duration: '0.3s',
-      easing: 'ease-in',
-      direction: 'reverse',
-    },
-    new: {
-      name: 'appear-right',
-      duration: '0.3s',
-      easing: 'ease-in-out',
-    },
-  }
+	anim = {
+		old: {
+			name: "hide-right",
+			duration: "0.3s",
+			easing: "ease-in",
+			direction: "reverse",
+		},
+		new: {
+			name: "appear-right",
+			duration: "0.3s",
+			easing: "ease-in-out",
+		},
+	};
 }
 
 const mySlide = {
-  forwards: anim,
-  backwards: anim,
-}
+	forwards: anim,
+	backwards: anim,
+};
 ---
 
 <section

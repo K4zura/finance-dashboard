@@ -1,46 +1,46 @@
 ---
-import CardMetrics from '@/components/common/CardMetrics.astro'
-import Layout from '@/layouts/Layout.astro'
-import TrendingUpIcon from '@/assets/icons/trending-up.svg'
-import PigIcon from '@/assets/icons/piggy-bank.svg'
-import TargetIcon from '@/assets/icons/target.svg'
-import CalendarIcon from '@/assets/icons/calendar.svg'
-import ProgressBar from '@/components/finance/ProgressBar.svelte'
-import CardSections from '@/components/common/CardSections.astro'
-import SavingGoalCard from '@/components/finance/SavingGoalCard.svelte'
+import CalendarIcon from "@/assets/icons/calendar.svg";
+import PigIcon from "@/assets/icons/piggy-bank.svg";
+import TargetIcon from "@/assets/icons/target.svg";
+import TrendingUpIcon from "@/assets/icons/trending-up.svg";
+import CardMetrics from "@/components/common/CardMetrics.astro";
+import CardSections from "@/components/common/CardSections.astro";
+import ProgressBar from "@/components/finance/ProgressBar.svelte";
+import SavingGoalCard from "@/components/finance/SavingGoalCard.svelte";
+import Layout from "@/layouts/Layout.astro";
 
 const goals = [
-  {
-    title: 'House',
-    color: 'red',
-    category: 'Housing',
-    priority: 'High',
-    total: 25000,
-    saved: 8500,
-    monthly: 800,
-    deadline: '2025-11-30',
-  },
-  {
-    title: 'New Motorcycle',
-    color: 'purple',
-    category: 'Transport',
-    priority: 'Low',
-    total: 40000000,
-    saved: 6000000,
-    monthly: 1200000,
-    deadline: '2024-12-31',
-  },
-  {
-    title: 'PC Build',
-    color: 'blue',
-    category: 'Technology',
-    priority: 'Medium',
-    total: 1900000,
-    saved: 1250000,
-    monthly: 50000,
-    deadline: '2025-12-31',
-  },
-]
+	{
+		title: "House",
+		color: "red",
+		category: "Housing",
+		priority: "High",
+		total: 25000,
+		saved: 8500,
+		monthly: 800,
+		deadline: "2025-11-30",
+	},
+	{
+		title: "New Motorcycle",
+		color: "purple",
+		category: "Transport",
+		priority: "Low",
+		total: 40000000,
+		saved: 6000000,
+		monthly: 1200000,
+		deadline: "2024-12-31",
+	},
+	{
+		title: "PC Build",
+		color: "blue",
+		category: "Technology",
+		priority: "Medium",
+		total: 1900000,
+		saved: 1250000,
+		monthly: 50000,
+		deadline: "2025-12-31",
+	},
+];
 ---
 
 <Layout title="Savings" description="Manage your savings">

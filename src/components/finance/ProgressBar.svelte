@@ -1,8 +1,8 @@
 <script lang="ts">
-  let totalBudget = 1150
-  let totalSpent = 475
+let totalBudget = 1150;
+let totalSpent = 475;
 
-  let percentage = (totalSpent / totalBudget) * 100
+let percentage = (totalSpent / totalBudget) * 100;
 </script>
 
 <div class="space-y-2">

@@ -1,105 +1,105 @@
 ---
-import { Image } from 'astro:assets'
-import BarItem from '@/components/common/BarItem.astro'
-import imageProfile from '@/assets/images/jinwoo.avif'
-import DashboardIcon from '@/assets/icons/dashboard.svg'
-import WalletIcon from '@/assets/icons/wallet.svg'
-import PiggyBankIcon from '@/assets/icons/piggy-bank.svg'
-import TrendingUpIcon from '@/assets/icons/trending-up.svg'
-import TrendingDownIcon from '@/assets/icons/trending-down.svg'
-import FolderIcon from '@/assets/icons/folder.svg'
-import CheckIcon from '@/assets/icons/check.svg'
-import NoteIcon from '@/assets/icons/note.svg'
-import TargetIcon from '@/assets/icons/target.svg'
-import CalendarIcon from '@/assets/icons/calendar.svg'
-import ClockIcon from '@/assets/icons/clock.svg'
-import BookIcon from '@/assets/icons/book.svg'
-import InitBackdrop from '@/components/common/InitBackdrop.svelte'
-import SettingsIcon from '@/assets/icons/settings.svg'
-import type { UserRecord } from 'firebase-admin/auth'
-import { getTranslations } from '@/i18n/index'
+import { Image } from "astro:assets";
+import type { UserRecord } from "firebase-admin/auth";
+import BookIcon from "@/assets/icons/book.svg";
+import CalendarIcon from "@/assets/icons/calendar.svg";
+import CheckIcon from "@/assets/icons/check.svg";
+import ClockIcon from "@/assets/icons/clock.svg";
+import DashboardIcon from "@/assets/icons/dashboard.svg";
+import FolderIcon from "@/assets/icons/folder.svg";
+import NoteIcon from "@/assets/icons/note.svg";
+import PiggyBankIcon from "@/assets/icons/piggy-bank.svg";
+import SettingsIcon from "@/assets/icons/settings.svg";
+import TargetIcon from "@/assets/icons/target.svg";
+import TrendingDownIcon from "@/assets/icons/trending-down.svg";
+import TrendingUpIcon from "@/assets/icons/trending-up.svg";
+import WalletIcon from "@/assets/icons/wallet.svg";
+import imageProfile from "@/assets/images/jinwoo.avif";
+import BarItem from "@/components/common/BarItem.astro";
+import InitBackdrop from "@/components/common/InitBackdrop.svelte";
+import { getTranslations } from "@/i18n/index";
 
-const lang = Astro.params.lang
-const t = getTranslations(lang ?? 'es') // Provide default language if undefined
+const lang = Astro.params.lang;
+const t = getTranslations(lang ?? "es"); // Provide default language if undefined
 
 const menuItems = [
-  {
-    title: 'Finanzas',
-    items: [
-      {
-        title: t.income.title,
-        url: '/finances/income',
-        icon: TrendingUpIcon,
-      },
-      {
-        title: t.expense.title,
-        url: '/finances/expense',
-        icon: TrendingDownIcon,
-      },
-      {
-        title: 'Savings',
-        url: '/finances/savings',
-        icon: PiggyBankIcon,
-      },
-      {
-        title: 'Budget',
-        url: '/finances/budget',
-        icon: WalletIcon,
-      },
-    ],
-  },
-  {
-    title: 'Productivity',
-    items: [
-      {
-        title: 'Projects',
-        url: '/productivity/projects',
-        icon: FolderIcon,
-      },
-      {
-        title: 'Tasks',
-        url: '/productivity/tasks',
-        icon: CheckIcon,
-      },
-      {
-        title: 'Notes',
-        url: '/productivity/notes',
-        icon: NoteIcon,
-      },
-      {
-        title: 'Habits',
-        url: '/productivity/habits',
-        icon: TargetIcon,
-      },
-    ],
-  },
-  {
-    title: 'tools',
-    items: [
-      {
-        title: 'Calendar',
-        url: '/tools/calendar',
-        icon: CalendarIcon,
-      },
-      {
-        title: 'Time',
-        url: '/tools/time',
-        icon: ClockIcon,
-      },
-      {
-        title: 'Learning',
-        url: '/tools/learning',
-        icon: BookIcon,
-      },
-    ],
-  },
-]
+	{
+		title: "Finanzas",
+		items: [
+			{
+				title: t.income.title,
+				url: "/finances/income",
+				icon: TrendingUpIcon,
+			},
+			{
+				title: t.expense.title,
+				url: "/finances/expense",
+				icon: TrendingDownIcon,
+			},
+			{
+				title: t.savings.title,
+				url: "/finances/savings",
+				icon: PiggyBankIcon,
+			},
+			{
+				title: t.budget.title,
+				url: "/finances/budget",
+				icon: WalletIcon,
+			},
+		],
+	},
+	{
+		title: "Productivity",
+		items: [
+			{
+				title: "Projects",
+				url: "/productivity/projects",
+				icon: FolderIcon,
+			},
+			{
+				title: "Tasks",
+				url: "/productivity/tasks",
+				icon: CheckIcon,
+			},
+			{
+				title: "Notes",
+				url: "/productivity/notes",
+				icon: NoteIcon,
+			},
+			{
+				title: "Habits",
+				url: "/productivity/habits",
+				icon: TargetIcon,
+			},
+		],
+	},
+	{
+		title: "tools",
+		items: [
+			{
+				title: "Calendar",
+				url: "/tools/calendar",
+				icon: CalendarIcon,
+			},
+			{
+				title: "Time",
+				url: "/tools/time",
+				icon: ClockIcon,
+			},
+			{
+				title: "Learning",
+				url: "/tools/learning",
+				icon: BookIcon,
+			},
+		],
+	},
+];
 
 interface Props {
-  user?: UserRecord
+	user?: UserRecord;
 }
 
-const { user } = Astro.props
+const { user } = Astro.props;
 ---
 
 <aside

@@ -1,59 +1,59 @@
 ---
-import CardMetrics from '@/components/common/CardMetrics.astro'
-import DollarIcon from '@/assets/icons/dollar.svg'
-import TrendingUpIcon from '@/assets/icons/trending-up.svg'
-import CalendarIcon from '@/assets/icons/calendar.svg'
-import Layout from '@/layouts/Layout.astro'
-import CardSections from '@/components/common/CardSections.astro'
-import FilterIcon from '@/assets/icons/filter.svg'
-import ApexChart from '@/components/finance/IncomeCharts.svelte'
-import { incomeData } from '@/lib/data'
-import { getTranslations } from '@/i18n/index'
+import CalendarIcon from "@/assets/icons/calendar.svg";
+import DollarIcon from "@/assets/icons/dollar.svg";
+import FilterIcon from "@/assets/icons/filter.svg";
+import TrendingUpIcon from "@/assets/icons/trending-up.svg";
+import CardMetrics from "@/components/common/CardMetrics.astro";
+import CardSections from "@/components/common/CardSections.astro";
+import ApexChart from "@/components/finance/IncomeCharts.svelte";
+import { getTranslations } from "@/i18n/index";
+import Layout from "@/layouts/Layout.astro";
+import { type Income, incomeData } from "@/lib/data";
 
-const lang = Astro.params.lang
-const t = getTranslations(lang ?? 'es') // Provide default language if undefined
+const lang = Astro.params.lang;
+const t = getTranslations(lang ?? "es"); // Provide default language if undefined
 
-function transformIncomeData(data: any[]) {
-  const monthNames = [
-    'Ene',
-    'Feb',
-    'Mar',
-    'Abr',
-    'May',
-    'Jun',
-    'Jul',
-    'Ago',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dic',
-  ]
+function transformIncomeData(data: Income[]) {
+	const monthNames = [
+		"Ene",
+		"Feb",
+		"Mar",
+		"Abr",
+		"May",
+		"Jun",
+		"Jul",
+		"Ago",
+		"Sep",
+		"Oct",
+		"Nov",
+		"Dic",
+	];
 
-  const grouped: Record<string, Record<string, number | string>> = {}
+	const grouped: Record<string, Record<string, number | string>> = {};
 
-  for (const item of data) {
-    const month = monthNames[item.date.getMonth()]
-    const year = item.date.getFullYear()
-    const category = item.title
-    const amount = item.mount
+	for (const item of data) {
+		const month = monthNames[item.date.getMonth()];
+		const year = item.date.getFullYear();
+		const category = item.title;
+		const amount = item.mount;
 
-    const key = `${year}-${month}`
+		const key = `${year}-${month}`;
 
-    if (!grouped[key]) {
-      grouped[key] = {
-        year,
-        month,
-      }
-    }
+		if (!grouped[key]) {
+			grouped[key] = {
+				year,
+				month,
+			};
+		}
 
-    // Ahora sí podemos indexar con strings sin error
-    grouped[key][category] = ((grouped[key][category] as number) || 0) + amount
-  }
+		// Ahora sí podemos indexar con strings sin error
+		grouped[key][category] = ((grouped[key][category] as number) || 0) + amount;
+	}
 
-  return Object.values(grouped)
+	return Object.values(grouped);
 }
 
-const chartData = transformIncomeData(incomeData)
+const chartData = transformIncomeData(incomeData);
 ---
 
 <Layout title={t.income.title} description={t.income.description}>

@@ -1,121 +1,131 @@
 <script>
-  import { chart } from 'svelte-apexcharts'
-  import { onMount } from 'svelte'
-  import { slide } from 'svelte/transition'
+import { onMount } from "svelte";
+import { slide } from "svelte/transition";
+import { chart } from "svelte-apexcharts";
 
-  // Recibe los datos desde .astro
-  export let data = []
+// Recibe los datos desde .astro
+export let data = [];
 
-  let selectedYear = new Date().getFullYear()
-  let selectedMonth = 'Todos'
-  $: categoryLabels = Array.from(
-    new Set(data.flatMap((item) => Object.keys(item).filter((k) => k !== 'year' && k !== 'month'))),
-  )
+let selectedYear = new Date().getFullYear();
+let selectedMonth = "Todos";
+$: categoryLabels = Array.from(
+	new Set(
+		data.flatMap((item) =>
+			Object.keys(item).filter((k) => k !== "year" && k !== "month"),
+		),
+	),
+);
 
-  $: {
-    if (!availableMonths.includes(selectedMonth)) {
-      selectedMonth = 'Todos'
-    }
-  }
+$: {
+	if (!availableMonths.includes(selectedMonth)) {
+		selectedMonth = "Todos";
+	}
+}
 
-  // Obtener años disponibles desde los datos
-  $: availableYears = [...new Set(data.map((item) => item.year))]
+// Obtener años disponibles desde los datos
+$: availableYears = [...new Set(data.map((item) => item.year))];
 
-  // Obtener meses disponibles para el año seleccionado
-  $: availableMonths = [
-    'Todos',
-    ...new Set(data.filter((item) => item.year === selectedYear).map((item) => item.month)),
-  ]
+// Obtener meses disponibles para el año seleccionado
+$: availableMonths = [
+	"Todos",
+	...new Set(
+		data.filter((item) => item.year === selectedYear).map((item) => item.month),
+	),
+];
 
-  // Filtrar los datos según año y mes
-  $: filteredData = data.filter(
-    (item) =>
-      item.year === selectedYear && (selectedMonth === 'Todos' || item.month === selectedMonth),
-  )
+// Filtrar los datos según año y mes
+$: filteredData = data.filter(
+	(item) =>
+		item.year === selectedYear &&
+		(selectedMonth === "Todos" || item.month === selectedMonth),
+);
 
-  // Función para sumar una categoría en todos los meses del año
-  function sumCategory(category) {
-    return filteredData.reduce((total, item) => total + (item[category] || 0), 0)
-  }
+// Función para sumar una categoría en todos los meses del año
+function sumCategory(category) {
+	return filteredData.reduce((total, item) => total + (item[category] || 0), 0);
+}
 
-  // Colores adaptados a tu tema (Tailwind o variables CSS)
-  let colorPrimary = '#4f46e5'
-  let colorSecondary = '#10b981'
-  let colorTertiary = '#f59e0b'
-  let bgColor = '#ffffff'
-  let boColor = '#ffffff'
+// Colores adaptados a tu tema (Tailwind o variables CSS)
+let colorPrimary = "#4f46e5";
+let colorSecondary = "#10b981";
+let colorTertiary = "#f59e0b";
+let bgColor = "#ffffff";
+let boColor = "#ffffff";
 
-  onMount(() => {
-    const styles = getComputedStyle(document.documentElement)
-    colorPrimary = styles.getPropertyValue('--color-primary').trim() || colorPrimary
-    colorSecondary = styles.getPropertyValue('--color-secondary').trim() || colorSecondary
-    colorTertiary = styles.getPropertyValue('--color-tertiary').trim() || colorTertiary
-    bgColor = styles.getPropertyValue('--color-surface').trim() || bgColor
-    boColor = styles.getPropertyValue('--color-dark').trim() || boColor
-  })
+onMount(() => {
+	const styles = getComputedStyle(document.documentElement);
+	colorPrimary =
+		styles.getPropertyValue("--color-primary").trim() || colorPrimary;
+	colorSecondary =
+		styles.getPropertyValue("--color-secondary").trim() || colorSecondary;
+	colorTertiary =
+		styles.getPropertyValue("--color-tertiary").trim() || colorTertiary;
+	bgColor = styles.getPropertyValue("--color-surface").trim() || bgColor;
+	boColor = styles.getPropertyValue("--color-dark").trim() || boColor;
+});
 
-  // Configuración del gráfico ApexCharts
-  $: options = {
-    chart: {
-      type: 'bar',
-      height: 350,
-      background: bgColor,
-      fontFamily: 'Oxanium Variable',
-      animations: {
-        enabled: true,
-        speed: 800,
-        animateGradually: {
-          enabled: false,
-          delay: 150,
-        },
-        dynamicAnimation: {
-          enabled: true,
-          speed: 350,
-        },
-      },
-    },
-    theme: {
-      mode: 'dark',
-    },
-    plotOptions: {
-      bar: {
-        horizontal: false,
-        columnWidth: '30%',
-        endingShape: 'rounded',
-        borderRadius: 10,
-        distributed: true,
-      },
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    xaxis: {
-      categories: categoryLabels,
-    },
-    legend: {
-      show: false,
-    },
-    grid: {
-      borderColor: boColor,
-    },
-    fill: {
-      opacity: 1,
-    },
-    series: [
-      {
-        data:
-          selectedMonth === 'Todos'
-            ? categoryLabels.map((label) => ({
-                x: label,
-                y: [sumCategory(label)],
-              }))
-            : categoryLabels.map((label) => ({
-                x: label,
-                y: filteredData.map((d) => d[label] || 0),
-              })),
-      },
-    ],
-  }
+// Configuración del gráfico ApexCharts
+$: options = {
+	chart: {
+		type: "bar",
+		height: 350,
+		background: bgColor,
+		fontFamily: "Oxanium Variable",
+		animations: {
+			enabled: true,
+			speed: 800,
+			animateGradually: {
+				enabled: false,
+				delay: 150,
+			},
+			dynamicAnimation: {
+				enabled: true,
+				speed: 350,
+			},
+		},
+	},
+	theme: {
+		mode: "dark",
+	},
+	plotOptions: {
+		bar: {
+			horizontal: false,
+			columnWidth: "30%",
+			endingShape: "rounded",
+			borderRadius: 10,
+			distributed: true,
+		},
+	},
+	dataLabels: {
+		enabled: false,
+	},
+	xaxis: {
+		categories: categoryLabels,
+	},
+	legend: {
+		show: false,
+	},
+	grid: {
+		borderColor: boColor,
+	},
+	fill: {
+		opacity: 1,
+	},
+	series: [
+		{
+			data:
+				selectedMonth === "Todos"
+					? categoryLabels.map((label) => ({
+							x: label,
+							y: [sumCategory(label)],
+						}))
+					: categoryLabels.map((label) => ({
+							x: label,
+							y: filteredData.map((d) => d[label] || 0),
+						})),
+		},
+	],
+};
 </script>
 
 <!-- Filtros -->
