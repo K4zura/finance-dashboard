@@ -40,8 +40,11 @@ const { title, description } = Astro.props;
     <meta name="twitter:description" content="A dashboard to manage your finances" />
     <ClientRouter />
   </head>
-  <body id="app" class="gap-4 p-4">
+  <body id="app" class="md:gap-4 p-4">
+    <button class="peer bg-primary h-8 w-8 absolute hidden not-md:block top-0 left-0 rounded-br-xl cursor-pointer has-checked:translate-x-[240px] transition-transform">O
+    <input type="checkbox" class="absolute inset-0 h-full w-full opacity-0"></button>
     <AsideBar user={user} />
+
     <main class="flex flex-col gap-4 overflow-y-auto p-3 [grid-area:main]">
       <Header title={title} description={description}>
         <slot name="header-btn" />
@@ -62,8 +65,18 @@ const { title, description } = Astro.props;
     display: grid;
     grid-template-areas: 'aside main main';
     /* 'aside main main'; */
-    grid-template-columns: 240px 1fr;
+    gap
+    grid-template-columns: 0px 1fr;
     /* grid-template-rows: auto 1fr; */
+  }
+  @media (width >= 768px) {
+    #app {
+      display: grid;
+      grid-template-areas: 'aside main main';
+      /* 'aside main main'; */
+      grid-template-columns: 240px 1fr;
+      /* grid-template-rows: auto 1fr; */
+    }
   }
 
   main {

@@ -10,6 +10,10 @@ import ExpensesByCategory from "@/components/finance/ExpensesByCategory.svelte";
 import ProgressBar from "@/components/finance/ProgressBar.svelte";
 import Layout from "@/layouts/Layout.astro";
 import { expenseCategories, expenseData } from "@/lib/data";
+import { getTranslations } from "@/i18n/index";
+
+const lang = Astro.params.lang
+const t = getTranslations(lang ?? 'es')
 
 const expenses = expenseCategories.map((category) => {
 	const gastos = expenseData.filter((e) => e.category.name === category.name);
@@ -25,13 +29,13 @@ const expenses = expenseCategories.map((category) => {
 });
 ---
 
-<Layout title="Expense" description="Manage your expense">
-  <div class="grid grid-cols-4 gap-4 space-y-1">
-    <CardMetrics title="Total of month" value="$3.450" percentage="+8.2%">
+<Layout title={t.expense.title} description={t.expense.description}>
+  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 space-y-1">
+    <CardMetrics title={t.common.total_month} value="$3.450" percentage="+8.2%">
       <TrendingDownIcon class="size-4 text-gray-300" slot="icon" />
-      vs last month
+      {t.common.vs_last_month}
     </CardMetrics>
-    <CardMetrics title="Budget" value="$1150">
+    <CardMetrics title={t.budget.title} value="$1150">
       <CardIcon class="size-4 text-gray-300" slot="icon" />
       <ProgressBar />
     </CardMetrics>
@@ -43,10 +47,10 @@ const expenses = expenseCategories.map((category) => {
       <AlertIcon class="size-4 text-gray-300" slot="icon" />
       2 over budget
     </CardMetrics>
-    <CardSections title="Expenses by Category" subtitle="Budget Tracking by Category" colSpan="4">
+    <CardSections title="Expenses by Category" subtitle="Budget Tracking by Category" colSpan="sm:col-span-2 xl:col-span-4">
       <ExpensesByCategory client:only="svelte" expenses={expenses} />
     </CardSections>
-    <CardSections title="Income History" subtitle="Detailed list of all your income" colSpan="4">
+    <CardSections title="Income History" subtitle="Detailed list of all your income" colSpan="sm:col-span-2 xl:col-span-4">
       <button
         slot="actions"
         class="bg-secondary hover:bg-tertiary text-dark flex cursor-pointer gap-2 rounded px-3 py-2 text-sm font-semibold"

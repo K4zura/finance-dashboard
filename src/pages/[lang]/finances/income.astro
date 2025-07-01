@@ -1,81 +1,82 @@
 ---
-import CalendarIcon from "@/assets/icons/calendar.svg";
-import DollarIcon from "@/assets/icons/dollar.svg";
-import FilterIcon from "@/assets/icons/filter.svg";
-import TrendingUpIcon from "@/assets/icons/trending-up.svg";
-import CardMetrics from "@/components/common/CardMetrics.astro";
-import CardSections from "@/components/common/CardSections.astro";
-import ApexChart from "@/components/finance/IncomeCharts.svelte";
-import { getTranslations } from "@/i18n/index";
-import Layout from "@/layouts/Layout.astro";
-import { type Income, incomeData } from "@/lib/data";
+import CalendarIcon from '@/assets/icons/calendar.svg'
+import DollarIcon from '@/assets/icons/dollar.svg'
+import FilterIcon from '@/assets/icons/filter.svg'
+import TrendingUpIcon from '@/assets/icons/trending-up.svg'
+import CardMetrics from '@/components/common/CardMetrics.astro'
+import CardSections from '@/components/common/CardSections.astro'
+import ApexChart from '@/components/finance/IncomeCharts.svelte'
+import { getTranslations } from '@/i18n/index'
+import Layout from '@/layouts/Layout.astro'
+import { type Income, incomeData } from '@/lib/data'
 
-const lang = Astro.params.lang;
-const t = getTranslations(lang ?? "es"); // Provide default language if undefined
+const lang = Astro.params.lang
+const t = getTranslations(lang ?? 'es') // Provide default language if undefined
+let totalAmount = 0
+let totalFixedAmount = 0
+let totalVariableAmount = 0
 
 function transformIncomeData(data: Income[]) {
-	const monthNames = [
-		"Ene",
-		"Feb",
-		"Mar",
-		"Abr",
-		"May",
-		"Jun",
-		"Jul",
-		"Ago",
-		"Sep",
-		"Oct",
-		"Nov",
-		"Dic",
-	];
+  const monthNames = [...t.common.months]
 
-	const grouped: Record<string, Record<string, number | string>> = {};
+  const grouped: Record<string, Record<string, number | string>> = {}
 
-	for (const item of data) {
-		const month = monthNames[item.date.getMonth()];
-		const year = item.date.getFullYear();
-		const category = item.title;
-		const amount = item.mount;
+  for (const item of data) {
+    const month = monthNames[item.date.getMonth()]
+    const year = item.date.getFullYear()
+    const category = item.title
+    const amount = item.mount
 
-		const key = `${year}-${month}`;
+    if (item.type === "Fixed") {
+      totalFixedAmount += amount
+    } else {
+      totalVariableAmount += amount
+    }
+    totalAmount += amount
 
-		if (!grouped[key]) {
-			grouped[key] = {
-				year,
-				month,
-			};
-		}
+    const key = `${year}-${month}`
 
-		// Ahora sí podemos indexar con strings sin error
-		grouped[key][category] = ((grouped[key][category] as number) || 0) + amount;
-	}
+    if (!grouped[key]) {
+      grouped[key] = {
+        year,
+        month,
+      }
+    }
 
-	return Object.values(grouped);
+    // Ahora sí podemos indexar con strings sin error
+    grouped[key][category] = ((grouped[key][category] as number) || 0) + amount
+  }
+
+  return Object.values(grouped)
 }
 
-const chartData = transformIncomeData(incomeData);
+const chartData = transformIncomeData(incomeData)
 ---
 
 <Layout title={t.income.title} description={t.income.description}>
-  <div class="grid grid-cols-3 gap-4 space-y-1">
-    <CardMetrics title={t.income.total_month} value="$3.450" percentage="+8.2%">
+  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 space-y-1">
+    <CardMetrics title={t.common.total_month} value={`$${totalAmount}`} percentage="+8.2%">
       <DollarIcon class="size-4 text-gray-300" slot="icon" />
-      {t.income.vs_last_month}
+      {t.common.vs_last_month}
     </CardMetrics>
-    <CardMetrics title={t.income.daily_avg} value="$115">
+    <CardMetrics title={t.income.fixed_income} value={`$${totalFixedAmount}`}>
       <TrendingUpIcon class="size-4 text-gray-300" slot="icon" />
-      {t.income.based_on_30}
+      {t.income.regular_income}
+    </CardMetrics>
+    <CardMetrics title={t.income.variable_income} value={`$${totalVariableAmount}`}>
+      <DollarIcon class="size-4 text-gray-300" slot="icon" />
+      {t.income.irregular_income}
     </CardMetrics>
     <CardMetrics title={t.income.active_sources} value="4">
       <CalendarIcon class="size-4 text-gray-300" slot="icon" />
       {t.income.different_categories}
     </CardMetrics>
-    <CardSections title={t.income.income_chart} subtitle={t.income.chart_desc} colSpan="3">
+    <CardSections title={t.income.income_chart} subtitle={t.income.chart_desc} colSpan="sm:col-span-2 xl:col-span-4">
       <div class="min-h-[350px] w-full">
-        <ApexChart client:only="svelte" data={chartData} />
+        <ApexChart client:only="svelte" data={chartData} lang={lang} />
       </div>
     </CardSections>
-    <CardSections title={t.income.income_history} subtitle={t.income.history_desc} colSpan="3">
+    <CardSections title={t.income.income_history} subtitle={t.income.history_desc} colSpan="sm:col-span-2 xl:col-span-4">
       <button
         slot="actions"
         class="bg-secondary hover:bg-tertiary text-dark flex cursor-pointer gap-2 rounded px-3 py-2 text-sm font-semibold"
@@ -91,7 +92,7 @@ const chartData = transformIncomeData(incomeData);
               <th scope="col" class="px-6 py-3">{t.income.category}</th>
               <th scope="col" class="px-6 py-3">{t.income.type}</th>
               <th scope="col" class="px-6 py-3">{t.income.date}</th>
-              <th scope="col" class="px-6 py-3">{t.income.mount}</th>
+              <th scope="col" class="px-6 py-3">{t.income.amount}</th>
             </tr>
           </thead>
           <tbody class="font-light">
@@ -108,7 +109,7 @@ const chartData = transformIncomeData(incomeData);
                       {income.category.icon} {income.category.name}
                     </td>
                     <td class="px-6 py-4">
-                      <span class="bg-tertiary rounded-full px-3 py-1.5">{income.type}</span>
+                      <span class="bg-tertiary rounded-full px-3 py-1.5">{income.type === "Fixed" ? t.types.fixed_income : t.types.variable_income}</span>
                     </td>
                     <td class="px-6 py-4">{income.date.toLocaleDateString()}</td>
                     <td class="text-success px-6 py-4 font-bold">
@@ -141,7 +142,7 @@ const chartData = transformIncomeData(incomeData);
       id="add-btn"
       class="bg-secondary text-dark cursor-pointer rounded px-6 py-2 font-semibold"
     >
-      + Add
+      + {t.layout.add_btn}
     </button>
   </add-button>
 </Layout>

@@ -55,14 +55,14 @@ export const incomeData: Income[] = [
 	{
 		title: "Dividendos ETF",
 		category: incomeCategories[2], // Inversiones
-		type: "Pasivo",
+		type: "Fixed",
 		date: new Date("2025-02-01"),
 		mount: 120,
 	},
 	{
 		title: "Sueldo mensual",
 		category: incomeCategories[3], // Trabajo
-		type: "Fijo",
+		type: "Fixed",
 		date: new Date("2025-02-28"),
 		mount: 400,
 	},
@@ -83,14 +83,14 @@ export const incomeData: Income[] = [
 	{
 		title: "Acciones Apple",
 		category: incomeCategories[2], // Inversiones
-		type: "Pasivo",
+		type: "Fixed",
 		date: new Date("2024-04-10"),
 		mount: 200,
 	},
 	{
 		title: "Sueldo mensual",
 		category: incomeCategories[3], // Trabajo
-		type: "Fijo",
+		type: "Fixed",
 		date: new Date("2024-04-30"),
 		mount: 1250,
 	},

@@ -1,42 +1,66 @@
 {
-	"layout": {
-		"title": "Dashboard",
-		"description": "A dashboard to manage your finances"
-	},
-	"income": {
-		"title": "Income",
-		"description": "Manage your income",
+	"common": {
+		"add": "Add",
+		"cancel": "Cancel",
+		"save": "Save",
+		"edit": "Edit",
+		"delete": "Delete",
+		"confirm": "Confirm",
+		"close": "Close",
 		"total_month": "Total of month",
-		"daily_avg": "Daily average",
-		"active_sources": "Active sources",
 		"vs_last_month": "vs last month",
-		"based_on_30": "Based on 30 days",
-		"different_categories": "Different categories",
-		"add_income": "Add New Income",
-		"filter": "Filter",
-		"income_history": "Income Histoy",
-		"history_desc": "Detailed list of all your income",
-		"concept": "Concept",
-		"category": "Category",
-		"type": "Type",
-		"date": "Date",
-		"mount": "Mount",
-		"income_chart": "Income Chart",
-		"chart_desc": "Chart of your income"
-	},
-	"expense": {
-		"title": "Expense"
-	},
-	"savings": {
-		"title": "Savings"
-	},
-	"budget": {
-		"title": "Budget"
-	},
-	"auth": {
-		"login": "Login",
-		"email": "E-mail",
-		"password": "Password",
-		"forgot": "Forgot the password?"
-	}
+  "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+},
+  "layout": {
+    "title": "Dashboard",
+    "description": "A dashboard to manage your finances",
+	"add_btn": "Add"
+  },
+  "income": {
+    "title": "Income",
+    "description": "Manage your income",
+    "active_sources": "Active sources",
+    "based_on_30": "Based on 30 days",
+    "different_categories": "Different categories",
+    "add_income": "Add New Income",
+    "filter": "Filter",
+    "income_history": "Income History",
+    "history_desc": "Detailed list of all your income",
+    "concept": "Concept",
+    "category": "Category",
+    "type": "Type",
+    "date": "Date",
+    "amount": "Amount",
+    "income_chart": "Income Chart",
+    "chart_desc": "Chart of your income",
+    "fixed_income": "Fixed income",
+    "variable_income": "Variable income",
+	"regular_income": "Regular income",
+	"irregular_income": "Irregular income"
+  },
+  "expense": {
+    "title": "Expense",
+	"description": "Manage your expense"
+  },
+  "savings": {
+    "title": "Savings"
+  },
+  "budget": {
+    "title": "Budget"
+  },
+  "auth": {
+    "login": "Login",
+    "email": "E-mail",
+    "password": "Password",
+    "forgot": "Forgot the password?"
+  },
+  "types": {
+    "fixed_income": "Fixed",
+    "variable_income": "Variable"
+  },
+  "chart": {
+	"all": "All",
+	"year": "Year",
+	"month": "Month"
+  }
 }

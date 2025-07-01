@@ -1,42 +1,67 @@
 {
-	"layout": {
-		"title": "Tablero",
-		"description": "Un tablero para administrar tus finanzas"
-	},
-	"income": {
-		"title": "Ingresos",
-		"description": "Administra tus ingresos",
+	"common": {
+		"add": "Agregar",
+		"cancel": "Cancelar",
+		"save": "Guardar",
+		"edit": "Editar",
+		"delete": "Eliminar",
+		"confirm": "Confirmar",
+		"close": "Cerrar",
 		"total_month": "Total del mes",
-		"daily_avg": "Promedio diario",
-		"active_sources": "Fuentes activas",
-		"vs_last_month": "vs mes anterior",
-		"based_on_30": "Basado en 30 días",
-		"different_categories": "Diferentes categorías",
-		"add_income": "Agregar nuevo ingreso",
-		"filter": "Filtrar",
-		"income_history": "Hitorial de Ingresos",
-		"history_desc": "Lista detalla de todos tus ingresos",
-		"concept": "Concepto",
-		"category": "Categoria",
-		"type": "Tipo",
-		"date": "Fecha",
-		"mount": "Monto",
-		"income_chart": "Grafico de Ingresos",
-		"chart_desc": "Grafico de todos tus ingresos"
+    "vs_last_month": "vs mes anterior",
+    "months": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
 	},
-	"expense": {
-		"title": "Gastos"
-	},
-	"savings": {
-		"title": "Ahorros"
-	},
-	"budget": {
-		"title": "Presupuesto"
-	},
-	"auth": {
-		"login": "Iniciar sesión",
-		"email": "Correo electrónico",
-		"password": "Contraseña",
-		"forgot": "¿Olvidaste tu contraseña?"
-	}
+  "layout": {
+    "title": "Tablero",
+    "description": "Un tablero para administrar tus finanzas",
+    "add_btn": "Agregar"
+  },
+  "income": {
+    "title": "Ingresos",
+    "description": "Administra tus ingresos",
+    "active_sources": "Fuentes activas",
+    "based_on_30": "Basado en 30 días",
+    "different_categories": "Diferentes categorías",
+    "add_income": "Agregar nuevo ingreso",
+    "filter": "Filtrar",
+    "income_history": "Historial de Ingresos",
+    "history_desc": "Lista detalla de todos tus ingresos",
+    "concept": "Concepto",
+    "category": "Categoria",
+    "type": "Tipo",
+    "date": "Fecha",
+    "amount": "Monto",
+    "income_chart": "Grafico de Ingresos",
+    "chart_desc": "Grafico de todos tus ingresos",
+    "fixed_income": "Ingresos fijos",
+    "variable_income": "Ingresos variables",
+    "regular_income": "Ingresos regulares",
+    "irregular_income": "Ingresos ocasionales"
+
+  },
+  "expense": {
+    "title": "Gastos",
+    "description": "Administra tus gastos"
+  },
+  "savings": {
+    "title": "Ahorros"
+  },
+  "budget": {
+    "title": "Presupuesto"
+  },
+  "auth": {
+    "login": "Iniciar sesión",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "forgot": "¿Olvidaste tu contraseña?"
+  },
+  "types": {
+    "fixed_income": "Fijo",
+    "variable_income": "Variable"
+  },
+  "chart": {
+	"all": "Todos",
+	"year": "Año",
+	"month": "Mes"
+  }
 }

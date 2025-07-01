@@ -104,7 +104,7 @@ const { user } = Astro.props;
 
 <aside
   transition:persist="true"
-  class="bg-primary relative flex flex-1 flex-col justify-between gap-4 overflow-y-auto overflow-x-hidden rounded-lg [grid-area:aside]"
+  class="bg-primary relative flex flex-1 flex-col justify-between gap-4 overflow-y-auto overflow-x-hidden rounded-lg [grid-area:aside] not-md:z-30 not-md:h-screen not-md:inset-0 not-md:-translate-x-[240px] not-md:w-[240px] not-md:rounded-none not-md:absolute peer-has-checked:translate-x-0 transition-transform"
 >
   <section class="mx-4 mt-4 flex flex-col items-center gap-0.5">
     {

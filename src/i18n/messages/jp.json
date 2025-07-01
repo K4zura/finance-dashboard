@@ -1,42 +1,66 @@
 {
-	"layout": {
-		"title": "ダッシュボード",
-		"description": "あなたの財務を管理するためのダッシュボード"
-	},
-	"income": {
-		"title": "収入",
-		"description": "収入を管理する",
+	"common": {
+		"add": "追加",
+		"cancel": "キャンセル",
+		"save": "保存",
+		"edit": "編集",
+		"delete": "削除",
+		"confirm": "確認",
+		"close": "閉じる",
 		"total_month": "今月の合計",
-		"daily_avg": "1日あたりの平均",
-		"active_sources": "アクティブな収入源",
-		"vs_last_month": "前月比",
-		"based_on_30": "30日間に基づく",
-		"different_categories": "さまざまなカテゴリ",
-		"add_income": "新しい収入を追加",
-		"filter": "フィルター",
-		"income_history": "Income Histoy",
-		"history_desc": "Detailed list of all your income",
-		"concept": "Concept",
-		"category": "Category",
-		"type": "Type",
-		"date": "Date",
-		"mount": "Mount",
-		"income_chart": "Income Chart",
-		"chart_desc": "Chart of your income"
+    "vs_last_month": "前月比",
+    "months": ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
 	},
-	"expense": {
-		"title": "Expense"
-	},
-	"savings": {
-		"title": "Savings"
-	},
-	"budget": {
-		"title": "Budget"
-	},
-	"auth": {
-		"login": "ログイン",
-		"email": "メールアドレス",
-		"password": "パスワード",
-		"forgot": "パスワードをお忘れですか？"
-	}
+  "layout": {
+    "title": "ダッシュボード",
+    "description": "あなたの財務を管理するためのダッシュボード",
+    "add_btn": "追加"
+  },
+  "income": {
+    "title": "収入",
+    "description": "収入を管理する",
+    "active_sources": "アクティブな収入源",
+    "based_on_30": "30日間に基づく",
+    "different_categories": "さまざまなカテゴリ",
+    "add_income": "新しい収入を追加",
+    "filter": "フィルター",
+    "income_history": "収入履歴",
+    "history_desc": "収入の詳細なリスト",
+    "concept": "概念",
+    "category": "カテゴリー",
+    "type": "種類",
+    "date": "日付",
+    "amount": "金額",
+    "income_chart": "収入グラフ",
+    "chart_desc": "収入のグラフ",
+    "fixed_income": "固定収入",
+    "variable_income": "変動収入",
+	"regular_income": "定期収入",
+	"irregular_income": "不定期収入"
+  },
+  "expense": {
+    "title": "支出",
+    "description": "支出を管理する"
+  },
+  "savings": {
+    "title": "貯蓄"
+  },
+  "budget": {
+    "title": "予算"
+  },
+  "auth": {
+    "login": "ログイン",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "forgot": "パスワードをお忘れですか？"
+  },
+  "types": {
+    "fixed_income": "固定",
+    "variable_income": "変動"
+  },
+  "chart": {
+	"all": "全て",
+	"year": "年",
+	"month": "月"
+  }
 }

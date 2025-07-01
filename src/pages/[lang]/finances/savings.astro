@@ -44,7 +44,7 @@ const goals = [
 ---
 
 <Layout title="Savings" description="Manage your savings">
-  <div class="grid grid-cols-4 gap-4 space-y-1">
+  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 space-y-1">
     <CardMetrics title="Total Saved" value="$20000" percentage="+8.2%">
       <PigIcon class="size-4 text-gray-300" slot="icon" />
       vs Previous Month
@@ -63,7 +63,7 @@ const goals = [
     </CardMetrics>
     {
       goals.map((goal) => (
-        <CardSections title={goal.title} subtitle={goal.category} colSpan="2">
+        <CardSections title={goal.title} subtitle={goal.category} colSpan="sm:col-span-2">
           <SavingGoalCard client:only="svelte" goal={goal} />
         </CardSections>
       ))

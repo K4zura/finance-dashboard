@@ -2,12 +2,15 @@
 import { onMount } from "svelte";
 import { slide } from "svelte/transition";
 import { chart } from "svelte-apexcharts";
+import { getTranslations } from '@/i18n/index'
 
+export let lang = "es"
+const t = getTranslations(lang ?? 'es')
 // Recibe los datos desde .astro
 export let data = [];
 
 let selectedYear = new Date().getFullYear();
-let selectedMonth = "Todos";
+let selectedMonth = t.chart.all;
 $: categoryLabels = Array.from(
 	new Set(
 		data.flatMap((item) =>
@@ -18,7 +21,7 @@ $: categoryLabels = Array.from(
 
 $: {
 	if (!availableMonths.includes(selectedMonth)) {
-		selectedMonth = "Todos";
+		selectedMonth = t.chart.all;
 	}
 }
 
@@ -27,7 +30,7 @@ $: availableYears = [...new Set(data.map((item) => item.year))];
 
 // Obtener meses disponibles para el año seleccionado
 $: availableMonths = [
-	"Todos",
+	t.chart.all,
 	...new Set(
 		data.filter((item) => item.year === selectedYear).map((item) => item.month),
 	),
@@ -37,7 +40,7 @@ $: availableMonths = [
 $: filteredData = data.filter(
 	(item) =>
 		item.year === selectedYear &&
-		(selectedMonth === "Todos" || item.month === selectedMonth),
+		(selectedMonth === t.chart.all || item.month === selectedMonth),
 );
 
 // Función para sumar una categoría en todos los meses del año
@@ -114,7 +117,7 @@ $: options = {
 	series: [
 		{
 			data:
-				selectedMonth === "Todos"
+				selectedMonth === t.chart.all
 					? categoryLabels.map((label) => ({
 							x: label,
 							y: [sumCategory(label)],
@@ -132,7 +135,7 @@ $: options = {
 <div class="flex flex-wrap gap-4 mb-4">
   <div>
     <!-- svelte-ignore a11y_label_has_associated_control -->
-    <label class="block mb-1 text-sm font-medium" for="year">Año</label>
+    <label class="block mb-1 text-sm font-medium" for="year">{t.chart.year}</label>
     <select
       bind:value={selectedYear}
       id="year"
@@ -146,7 +149,7 @@ $: options = {
 
   <div>
     <!-- svelte-ignore a11y_label_has_associated_control -->
-    <label class="block mb-1 text-sm font-medium" for="month">Mes</label>
+    <label class="block mb-1 text-sm font-medium" for="month">{t.chart.month}</label>
     <select
       bind:value={selectedMonth}
       id="month"
