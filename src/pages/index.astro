@@ -1,7 +1,20 @@
 ---
+import { app } from "@/firebase/server";
 import Layout from "@/layouts/Layout.astro";
+import { getAuth } from "firebase-admin/auth";
 
-Astro.redirect("/es/");
+const auth = getAuth(app);
+if (Astro.cookies.has("__session")) {
+  const sessionCookie = Astro.cookies.get("__session")!.value;
+  const decodedCookie = await auth.verifySessionCookie(sessionCookie);
+  if (decodedCookie) {
+    return Astro.redirect("/es/");
+  }
+} else {
+    return Astro.redirect("/es/auth/");
+}
 ---
 
-<Layout title="incio" description="holas" />
+<Layout title="Home" description="Home">
+    <h1>Home</h1>
+</Layout>

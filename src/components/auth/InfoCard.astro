@@ -1,4 +1,6 @@
 ---
+const lang = Astro.params.lang;
+
 interface Props {
 	side: string;
 }
@@ -20,10 +22,10 @@ const { side } = Astro.props;
         side === 'left' ? (
 
             <p class="text-2xl font-bold">Don't have account?</p>
-            <a href="/auth/register" class="bg-dark rounded-md px-20 py-2 text-xl font-bold">Register</a>
+            <a href={`/${lang}/auth/register`} class="bg-dark rounded-md px-20 py-2 text-xl font-bold">Register</a>
         ) : (
             <p class="text-2xl font-bold">Do you have account?</p>
-            <a href="/auth/" class="bg-dark rounded-md px-20 py-2 text-xl font-bold">Login</a>
+            <a href={`/${lang}/auth/`} class="bg-dark rounded-md px-20 py-2 text-xl font-bold">Login</a>
         )
     }
   </div>

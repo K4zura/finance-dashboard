@@ -1,9 +1,5 @@
 ---
-import { getTranslations } from "@/i18n/index";
-import { incomeData } from "@/lib/data";
-
 const lang = Astro.params.lang;
-const t = getTranslations(lang ?? "es"); // Provide default language if undefined
 interface Props {
 	href: string;
 }

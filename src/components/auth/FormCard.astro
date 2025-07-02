@@ -3,6 +3,8 @@ import GoogleIcon from "@/assets/icons/brands/google.svg";
 import InfoIcon from "@/assets/icons/brands/info.svg";
 import UserIcon from "@/assets/icons/brands/user.svg";
 
+const lang = Astro.params.lang;
+
 interface Props {
 	side: string;
 	post: string;
@@ -80,7 +82,7 @@ const mySlide = {
     <button id="google" class="bg-dark size-16 cursor-pointer rounded-full p-2.5">
       <GoogleIcon class="size-full" />
     </button>
-    <a href="/" class="bg-dark size-16 cursor-pointer rounded-full p-2.5">
+    <a href={`/${lang}/`} class="bg-dark size-16 cursor-pointer rounded-full p-2.5">
       <UserIcon class="text-light pointer-events-none size-full" />
     </a>
   </div>
