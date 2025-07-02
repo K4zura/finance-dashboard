@@ -3,6 +3,7 @@ import CalendarIcon from '@/assets/icons/calendar.svg'
 import DollarIcon from '@/assets/icons/dollar.svg'
 import TrendingUpIcon from '@/assets/icons/trending-up.svg'
 import CardMetrics from '@/components/common/CardMetrics.astro'
+import CardSections from '@/components/common/CardSections.astro'
 import { getTranslations } from '@/i18n/index'
 import Layout from '@/layouts/Layout.astro'
 
@@ -28,5 +29,10 @@ const t = getTranslations(lang ?? 'es') // Provide default language if undefined
       <CalendarIcon class="size-4 text-gray-300" slot="icon" />
       {t.project.need_action_urgent}
     </CardMetrics>
+    <!--  -->
+<!-- CARD SECTIONS -->
+    <CardSections title="project" subtitle='mini project' colSpan='sm:col-span-2 xl:col-span-4'>
+
+    </CardSections>
   </div>
 </Layout>

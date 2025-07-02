@@ -110,14 +110,15 @@ const { user } = Astro.props;
     {
       user ? (
         <picture class="border-dark mx-1 size-28 overflow-hidden rounded-full border-4">
-          <img
+          <Image
+            inferSize
             loading="eager"
-            src={user?.photoURL}
-            alt={`img profile of ${user?.displayName}`}
+            src={user.photoURL ?? ""}
+            alt={`img profile of ${user.displayName}`}
             class="aspect-square size-full object-cover object-center"
           />
         </picture>
-        <h2 class="text-light text-center text-xl font-extrabold">{user?.displayName}</h2>
+        <h2 class="text-light text-center text-xl font-extrabold">{user.displayName}</h2>
       ) : (
         <picture class="border-dark mx-1 size-28 overflow-hidden rounded-full border-4">
           <Image
@@ -150,7 +151,7 @@ const { user } = Astro.props;
           </h3>
           <ul class="flex flex-col gap-0.5">
             {section.items?.map((item) => (
-              <BarItem href={item.url}>
+              <BarItem href={item.url} class="pl-4">
                 <item.icon class="size-4" />
                 {item.title}
               </BarItem>

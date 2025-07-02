@@ -5,12 +5,13 @@ import { ClientRouter } from "astro:transitions";
 import { getAuth } from "firebase-admin/auth";
 import { app } from "../firebase/server";
 
+const lang = Astro.params.lang || 'en';
 const auth = getAuth(app);
 if (Astro.cookies.has("__session")) {
 	const sessionCookie = Astro.cookies.get("__session")!.value;
 	const decodedCookie = await auth.verifySessionCookie(sessionCookie);
 	if (decodedCookie) {
-		return Astro.redirect("/");
+		return Astro.redirect(`/${lang}`);
 	}
 }
 
@@ -35,7 +36,7 @@ const mySlide = {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />

@@ -2,12 +2,13 @@
 const lang = Astro.params.lang;
 interface Props {
 	href: string;
+  class?: string;
 }
-const { href } = Astro.props;
+const { href, class: className } = Astro.props;
 ---
 
 <li
-  class="hover:bg-hover group relative flex rounded-lg text-lg font-semibold transition-colors duration-300"
+  class={`hover:bg-hover group relative flex rounded-lg text-lg font-semibold transition-colors duration-300 ${className}`}
 >
   <a
     href={`/${lang}${href}`}
