@@ -1,7 +1,32 @@
 ---
-import Layout from "@/layouts/Layout.astro";
+import CalendarIcon from '@/assets/icons/calendar.svg'
+import DollarIcon from '@/assets/icons/dollar.svg'
+import TrendingUpIcon from '@/assets/icons/trending-up.svg'
+import CardMetrics from '@/components/common/CardMetrics.astro'
+import { getTranslations } from '@/i18n/index'
+import Layout from '@/layouts/Layout.astro'
+
+const lang = Astro.params.lang
+const t = getTranslations(lang ?? 'es') // Provide default language if undefined
 ---
 
-<Layout title="Projects" description="Manage your projects">
-  <h1>Projects</h1>
+<Layout title={t.project.title} description={t.project.description}>
+  <div class="grid grid-cols-1 gap-4 space-y-1 sm:grid-cols-2 xl:grid-cols-4">
+    <CardMetrics title={t.project.total_projects} value="4">
+      <CalendarIcon class="size-4 text-gray-300" slot="icon" />
+      3 {t.project.active_projects}
+    </CardMetrics>
+    <CardMetrics title={t.project.completed} value="4">
+      <CalendarIcon class="size-4 text-gray-300" slot="icon" />
+      25% {t.project.completed_percent}
+    </CardMetrics>
+    <CardMetrics title={t.project.inprogress} value="4">
+      <CalendarIcon class="size-4 text-gray-300" slot="icon" />
+      {t.project.attention_required}
+    </CardMetrics>
+    <CardMetrics title={t.project.delayed} value="4">
+      <CalendarIcon class="size-4 text-gray-300" slot="icon" />
+      {t.project.need_action_urgent}
+    </CardMetrics>
+  </div>
 </Layout>

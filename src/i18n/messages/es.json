@@ -1,16 +1,16 @@
 {
-	"common": {
-		"add": "Agregar",
-		"cancel": "Cancelar",
-		"save": "Guardar",
-		"edit": "Editar",
-		"delete": "Eliminar",
-		"confirm": "Confirmar",
-		"close": "Cerrar",
-		"total_month": "Total del mes",
+  "common": {
+    "add": "Agregar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "confirm": "Confirmar",
+    "close": "Cerrar",
+    "total_month": "Total del mes",
     "vs_last_month": "vs mes anterior",
     "months": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
-	},
+  },
   "layout": {
     "title": "Tablero",
     "description": "Un tablero para administrar tus finanzas",
@@ -31,13 +31,12 @@
     "type": "Tipo",
     "date": "Fecha",
     "amount": "Monto",
-    "income_chart": "Grafico de Ingresos",
-    "chart_desc": "Grafico de todos tus ingresos",
+    "income_chart": "Gráfico de Ingresos",
+    "chart_desc": "Gráfico de todos tus ingresos",
     "fixed_income": "Ingresos fijos",
     "variable_income": "Ingresos variables",
     "regular_income": "Ingresos regulares",
     "irregular_income": "Ingresos ocasionales"
-
   },
   "expense": {
     "title": "Gastos",
@@ -55,13 +54,25 @@
     "password": "Contraseña",
     "forgot": "¿Olvidaste tu contraseña?"
   },
+  "project": {
+    "title": "Proyecto",
+    "description": "Administra tus proyectos",
+    "total_projects": "Total de proyectos",
+    "active_projects": "Proyectos activos",
+    "completed": "Completados",
+    "completed_percent": "porcentaje completado",
+    "inprogress": "En progreso",
+    "delayed": "Retrasados",
+    "attention_required": "Requiere atención",
+    "need_action_urgent": "Necesita acción urgente"
+  },
   "types": {
     "fixed_income": "Fijo",
     "variable_income": "Variable"
   },
   "chart": {
-	"all": "Todos",
-	"year": "Año",
-	"month": "Mes"
+    "all": "Todos",
+    "year": "Año",
+    "month": "Mes"
   }
 }

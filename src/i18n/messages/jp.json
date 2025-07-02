@@ -1,16 +1,29 @@
 {
-	"common": {
-		"add": "追加",
-		"cancel": "キャンセル",
-		"save": "保存",
-		"edit": "編集",
-		"delete": "削除",
-		"confirm": "確認",
-		"close": "閉じる",
-		"total_month": "今月の合計",
+  "common": {
+    "add": "追加",
+    "cancel": "キャンセル",
+    "save": "保存",
+    "edit": "編集",
+    "delete": "削除",
+    "confirm": "確認",
+    "close": "閉じる",
+    "total_month": "今月の合計",
     "vs_last_month": "前月比",
-    "months": ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
-	},
+    "months": [
+      "1月",
+      "2月",
+      "3月",
+      "4月",
+      "5月",
+      "6月",
+      "7月",
+      "8月",
+      "9月",
+      "10月",
+      "11月",
+      "12月"
+    ]
+  },
   "layout": {
     "title": "ダッシュボード",
     "description": "あなたの財務を管理するためのダッシュボード",
@@ -35,8 +48,8 @@
     "chart_desc": "収入のグラフ",
     "fixed_income": "固定収入",
     "variable_income": "変動収入",
-	"regular_income": "定期収入",
-	"irregular_income": "不定期収入"
+    "regular_income": "定期収入",
+    "irregular_income": "不定期収入"
   },
   "expense": {
     "title": "支出",
@@ -54,13 +67,25 @@
     "password": "パスワード",
     "forgot": "パスワードをお忘れですか？"
   },
+  "project": {
+    "title": "プロジェクト",
+    "description": "プロジェクトを管理する",
+    "total_projects": "プロジェクトの合計",
+    "active_projects": "アクティブなプロジェクト",
+    "completed": "完了",
+    "completed_percent": "完了率",
+    "inprogress": "進行中",
+    "delayed": "遅れ",
+    "attention_required": "注意が必要",
+    "need_action_urgent": "緊急なアクションが必要"
+  },
   "types": {
     "fixed_income": "固定",
     "variable_income": "変動"
   },
   "chart": {
-	"all": "全て",
-	"year": "年",
-	"month": "月"
+    "all": "全て",
+    "year": "年",
+    "month": "月"
   }
 }

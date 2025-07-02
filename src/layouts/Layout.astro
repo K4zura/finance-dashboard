@@ -1,4 +1,5 @@
 ---
+
 import "@/styles/global.css";
 import { ClientRouter } from "astro:transitions";
 import { getAuth } from "firebase-admin/auth";
@@ -7,10 +8,11 @@ import Header from "@/components/common/Header.astro";
 import { app } from "../firebase/server";
 
 const auth = getAuth(app);
-let user;
+let user = null;
+
 
 if (Astro.cookies.has("__session")) {
-	const sessionCookie = Astro.cookies.get("__session")!.value;
+	const sessionCookie = Astro.cookies.get("__session")?.value || "";
 	const decodedCookie = await auth.verifySessionCookie(sessionCookie);
 	user = await auth.getUser(decodedCookie.uid);
 }

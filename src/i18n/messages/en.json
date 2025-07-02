@@ -1,20 +1,20 @@
 {
-	"common": {
-		"add": "Add",
-		"cancel": "Cancel",
-		"save": "Save",
-		"edit": "Edit",
-		"delete": "Delete",
-		"confirm": "Confirm",
-		"close": "Close",
-		"total_month": "Total of month",
-		"vs_last_month": "vs last month",
-  "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-},
+  "common": {
+    "add": "Add",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "close": "Close",
+    "total_month": "Total of month",
+    "vs_last_month": "vs last month",
+    "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  },
   "layout": {
     "title": "Dashboard",
     "description": "A dashboard to manage your finances",
-	"add_btn": "Add"
+    "add_btn": "Add"
   },
   "income": {
     "title": "Income",
@@ -35,12 +35,12 @@
     "chart_desc": "Chart of your income",
     "fixed_income": "Fixed income",
     "variable_income": "Variable income",
-	"regular_income": "Regular income",
-	"irregular_income": "Irregular income"
+    "regular_income": "Regular income",
+    "irregular_income": "Irregular income"
   },
   "expense": {
     "title": "Expense",
-	"description": "Manage your expense"
+    "description": "Manage your expense"
   },
   "savings": {
     "title": "Savings"
@@ -54,13 +54,25 @@
     "password": "Password",
     "forgot": "Forgot the password?"
   },
+  "project": {
+    "title": "Project",
+    "description": "Manage your projects",
+    "total_projects": "Total projects",
+    "active_projects": "Active projects",
+    "completed": "Completed",
+    "completed_percent": "Completed percent",
+    "inprogress": "In progress",
+    "delayed": "Delayed",
+    "attention_required": "Attention required",
+    "need_action_urgent": "Need action urgent"
+  },
   "types": {
     "fixed_income": "Fixed",
     "variable_income": "Variable"
   },
   "chart": {
-	"all": "All",
-	"year": "Year",
-	"month": "Month"
+    "all": "All",
+    "year": "Year",
+    "month": "Month"
   }
 }
